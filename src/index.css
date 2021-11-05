@@ -2,3 +2,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: 'Avenir';
+    font-style: normal;
+    font-size: 23.62px;
+    line-height: 36.88px;
+    src: url('assets/fonts/AvenirLTStd-Book.otf');
+}
+
+body {
+    font-family: 'Avenir';
+    margin: 0;
+}
+
+.bolded {
+    font-weight: 900 !important;
+}
