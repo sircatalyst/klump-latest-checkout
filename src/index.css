@@ -11,6 +11,11 @@
     src: url('assets/fonts/AvenirLTStd-Book.otf');
 }
 
+@font-face {
+    font-family: 'Avenir-Bold';
+    src: url('assets/fonts/AvenirLTStd-Black.otf');
+}
+
 body {
     font-family: 'Avenir';
     margin: 0;
@@ -18,4 +23,8 @@ body {
 
 .bolded {
     font-weight: 900 !important;
+}
+
+.hero-text {
+    font-family: 'Avenir-Bold';
 }
