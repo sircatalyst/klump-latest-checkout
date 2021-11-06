@@ -1,49 +1,36 @@
 <template>
     <klump-checkout-container>
-        <section class="text-base">
-            <h1 class="hero-text bolded text-2xl my-6 text-primary">
-                Pay in 4 easy payments
-            </h1>
-            <ul class="font-bold flex flex-col space-y-10 mb-12 relative">
-                <div class="relative">
-                    <li class="bullet"><span>Continue with Klump</span></li>
-                    <div class="vertical"></div>
-                </div>
-                <div class="relative">
-                    <li class="bullet special-border">
-                        <span>Review order with this merchant</span>
-                    </li>
-                    <div class="vertical"></div>
-                </div>
-                <li class="bullet"><span>Confirm purchase</span></li>
-            </ul>
-            <p class="text-xs text-primary-grey my-5">
-                By pressing Continue you consent to Klump sharing billing
-                information with this merchant
-            </p>
-            <button
-                class="
-                    bg-primary
-                    py-4
-                    font-bold
-                    w-full
-                    text-white
-                    tracking-wider
-                "
-            >
-                Continue
-            </button>
-        </section>
+        <template v-slot:header> Pay in 4 easy payments </template>
+        <ul class="font-bold flex flex-col space-y-10 mb-12 relative">
+            <div class="relative">
+                <li class="bullet"><span>Continue with Klump</span></li>
+                <div class="vertical"></div>
+            </div>
+            <div class="relative">
+                <li class="bullet special-border">
+                    <span>Review order with this merchant</span>
+                </li>
+                <div class="vertical"></div>
+            </div>
+            <li class="bullet"><span>Confirm purchase</span></li>
+        </ul>
+        <p class="text-xs text-primary-grey my-5">
+            By pressing Continue you consent to Klump sharing billing
+            information with this merchant
+        </p>
+        <klump-checkout-button> Continue </klump-checkout-button>
     </klump-checkout-container>
 </template>
 
 <script>
 import KlumpCheckoutContainer from '@/components/KlumpCheckoutContainer';
+import KlumpCheckoutButton from '@/components/KlumpCheckoutButton';
 
 export default {
     name: 'FourEasyPayments',
     components: {
         KlumpCheckoutContainer,
+        KlumpCheckoutButton,
     },
 };
 </script>
