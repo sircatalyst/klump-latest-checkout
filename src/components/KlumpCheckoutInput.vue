@@ -2,8 +2,11 @@
     <div
         @click="focusInput"
         v-on-clickaway="removeFocus"
-        class="border-xs border-input px-3 py-1 cursor-text mb-6 relative"
-        :class="customClass"
+        class="border-xs px-4 py-1 cursor-text mb-6 relative"
+        :class="[
+            errorMessages[0] ? 'border-red-400' : 'border-input',
+            customClass,
+        ]"
     >
         <label
             class="
@@ -24,8 +27,9 @@
             name=""
             :ref="inputProp.ref"
             id=""
-            @keyup="emitInputData"
-            class="w-full text-sm outline-none"
+            @input="emitInputData"
+            v-model="inputData"
+            class="w-full text-sm outline-none font-bold"
         />
     </div>
 </template>
@@ -52,23 +56,43 @@ export default {
                 return 'type' in value && 'ref' in value;
             },
         },
+        errorMessages: {
+            type: Array,
+        },
     },
     data() {
         return {
             active: false,
+            inputData: '',
         };
+    },
+    computed: {
+        ref() {
+            return this.$refs[this.inputProp.ref];
+        },
+    },
+    watch: {
+        inputData(value) {
+            if (!value) {
+                this.removeFocus();
+            }
+        },
     },
     methods: {
         focusInput() {
-            const ref = this.$refs[this.inputProp.ref];
-            ref.focus();
+            this.ref.focus();
             this.active = true;
         },
         removeFocus() {
-            this.active = false;
+            if (!this.inputData) {
+                this.active = false;
+                this.ref.blur();
+            } else {
+                this.ref.blur();
+            }
         },
-        emitInputData(e) {
-            this.$emit('input', e.target.value);
+        emitInputData() {
+            this.$emit('input', this.inputData);
         },
     },
 };
