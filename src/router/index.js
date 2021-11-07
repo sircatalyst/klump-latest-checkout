@@ -8,6 +8,8 @@ const VerifyYourDetails = () =>
     import(
         /* webpackChunkName: 'VerifyYourDetails' */ '../forms/VerifyYourDetails'
     );
+const EnterTheCode = () =>
+    import(/* webpackChunkName: 'EnterTheCode' */ '../forms/EnterTheCode');
 
 Vue.use(VueRouter);
 
@@ -21,6 +23,11 @@ const routes = [
         path: '/verify-your-details',
         name: 'verifyyourdetails',
         component: VerifyYourDetails,
+    },
+    {
+        path: '/enter-the-code',
+        name: 'enterthecode',
+        component: EnterTheCode,
     },
 ];
 
