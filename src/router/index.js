@@ -12,6 +12,10 @@ const EnterTheCode = () =>
     import(/* webpackChunkName: 'EnterTheCode' */ '../forms/EnterTheCode');
 const WhatsYourEmail = () =>
     import(/* webpackChunkName: 'WhatsYourEmail' */ '../forms/WhatsYourEmail');
+const ChooseAPassword = () =>
+    import(
+        /* webpackChunkName: 'ChooseAPassword' */ '../forms/ChooseAPassword'
+    );
 
 Vue.use(VueRouter);
 
@@ -35,6 +39,11 @@ const routes = [
         path: '/whats-your-email',
         name: 'whatsyouremail',
         component: WhatsYourEmail,
+    },
+    {
+        path: '/choose-a-password',
+        name: 'chooseapassword',
+        component: ChooseAPassword,
     },
 ];
 
