@@ -55,10 +55,5 @@ export default {
             email: '',
         };
     },
-    methods: {
-        // saveEmail(email) {
-        //     this.email = email;
-        // },
-    },
 };
 </script>
