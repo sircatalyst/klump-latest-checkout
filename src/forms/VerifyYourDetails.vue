@@ -97,16 +97,7 @@ export default {
         onSelect({ dialCode }) {
             this.dialCode = dialCode;
         },
-        // convertToString(dialCode, phoneNumber) {
-        //     return `+${dialCode.toString()}` + ' ' + phoneNumber.toString();
-        // },
-        // inputTelephone(event) {
-        //     // this.tel = event.target.value !== '' ? event.target.value : null;
-        // },
     },
-    // mounted() {
-    //     this.tel = this.formattedDialCode;
-    // },
 };
 </script>
 <style>
