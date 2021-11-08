@@ -27,6 +27,7 @@
             name=""
             :ref="inputProp.ref"
             id=""
+            @focus="focusInput"
             @input="emitInputData"
             v-model="inputData"
             class="w-full text-sm outline-none font-bold"
