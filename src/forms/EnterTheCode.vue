@@ -1,7 +1,7 @@
 <template>
     <klump-checkout-container>
         <template v-slot:header> Enter the code </template>
-        <p class="mb-6">
+        <p class="mb-6 leading-30">
             A code has been sent to <strong>+234 812 263 2296.</strong> You
             should get it within 20 seconds.
         </p>
