@@ -4,6 +4,10 @@ const FourEasyPayments = () =>
     import(
         /* webpackChunkName: 'FourEasyPayments' */ '../forms/FourEasyPayments'
     );
+const VerifyYourDetails = () =>
+    import(
+        /* webpackChunkName: 'VerifyYourDetails' */ '../forms/VerifyYourDetails'
+    );
 
 Vue.use(VueRouter);
 
@@ -12,6 +16,11 @@ const routes = [
         path: '/pay-in-4-easy-payments',
         name: 'foureasypayments',
         component: FourEasyPayments,
+    },
+    {
+        path: '/verify-your-details',
+        name: 'verifyyourdetails',
+        component: VerifyYourDetails,
     },
 ];
 
