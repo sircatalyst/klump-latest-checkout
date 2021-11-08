@@ -5,7 +5,7 @@
                 shadow-lg
                 bg-white
                 w-full
-                px-10
+                px-9
                 py-8
                 xl:w-1/3
                 relative
