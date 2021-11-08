@@ -1,6 +1,6 @@
 <template>
     <div class="flex xl:justify-center xl:items-center h-screen">
-        <div class="shadow-lg bg-white w-full px-10 py-8 xl:w-1/3 relative">
+        <div class="shadow-lg bg-white w-full px-9 py-8 xl:w-1/3 relative">
             <section class="flex justify-center relative">
                 <div class="flex flex-col space-y-2 text-center">
                     <h1 class="hero-text text-primary text-2xl tracking-wide">
@@ -13,7 +13,7 @@
                 <klump-close-button></klump-close-button>
             </section>
             <section class="text-base">
-                <h1 class="hero-text bolded text-2xl my-6 text-primary">
+                <h1 class="hero-text bolded text-2xl mt-4 mb-2 text-primary">
                     <slot name="header"></slot>
                 </h1>
                 <slot></slot>
