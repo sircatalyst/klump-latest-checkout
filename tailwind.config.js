@@ -8,6 +8,7 @@ module.exports = {
                 'primary-grey': '#787573',
                 input: '#E5E5E5',
                 'left-b': 'rgba(143, 143, 143, 0.5)',
+                'light-blue': '#4062D1',
             },
             borderWidth: {
                 xs: '0.883721px',

@@ -1,6 +1,17 @@
 <template>
     <div class="flex xl:justify-center xl:items-center h-screen">
-        <div class="shadow-lg bg-white w-full px-9 py-8 xl:w-1/3 relative">
+        <div
+            class="
+                shadow-lg
+                bg-white
+                w-full
+                px-9
+                py-8
+                xl:w-1/3
+                relative
+                rounded
+            "
+        >
             <section class="flex justify-center relative">
                 <div class="flex flex-col space-y-2 text-center">
                     <h1 class="hero-text text-primary text-2xl tracking-wide">
