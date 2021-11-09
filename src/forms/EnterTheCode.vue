@@ -16,9 +16,11 @@
             Enter the 6-digit code here
         </klump-checkout-input>
         <div class="mb-8">
-            <span class="block text-light-blue underline cursor-pointer"
-                >Change phone number</span
-            >
+            <router-link :to="{ name: 'verifyyourdetails' }">
+                <span class="block text-light-blue underline cursor-pointer"
+                    >Change phone number</span
+                >
+            </router-link>
         </div>
         <p class="text-xs text-primary-grey my-5">
             This site is protected by reCAPTCHA Enterprise and the Google
@@ -41,6 +43,7 @@ import KlumpCheckoutContainer from '../components/KlumpCheckoutContainer.vue';
 import KlumpCheckoutInput from '../components/KlumpCheckoutInput.vue';
 
 export default {
+    name: 'EnterTheCode',
     components: {
         KlumpCheckoutContainer,
         KlumpCheckoutButton,
