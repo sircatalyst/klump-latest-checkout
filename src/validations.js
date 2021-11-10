@@ -22,3 +22,8 @@ extend('password-valid', (value) => {
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{7,}$/;
     return passwordRegex.test(value);
 });
+
+extend('bvn-valid', (value) => {
+    const bvnRegex = /^[0-9]{11}$/;
+    return bvnRegex.test(value);
+});
