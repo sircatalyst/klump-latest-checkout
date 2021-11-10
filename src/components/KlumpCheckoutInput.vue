@@ -17,7 +17,7 @@
                 mb-1
                 cursor-text
             "
-            :class="active ? 'text-sm' : 'relative top-3'"
+            :class="active ? 'text-xs' : 'relative top-3'"
             :for="inputProp.ref"
         >
             <slot></slot>
