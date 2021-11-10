@@ -17,6 +17,12 @@ extend('phone-valid', (value) => {
     return phoneRegex.test(value);
 });
 
+extend('password-valid', (value) => {
+    const passwordRegex =
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{7,}$/;
+    return passwordRegex.test(value);
+});
+
 extend('bvn-valid', (value) => {
     const bvnRegex = /^[0-9]{11}$/;
     return bvnRegex.test(value);
