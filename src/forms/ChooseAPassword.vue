@@ -1,7 +1,7 @@
 <template>
     <klump-checkout-container>
         <template v-slot:header> Choose a password </template>
-        <p class="mb-6">
+        <p class="mb-6 leading-30">
             Your password should contain at least a number, a special character
             <strong>(.!@#%^&amp;),</strong> an uppercase and lowercase and must
             be at least 7 characters long.

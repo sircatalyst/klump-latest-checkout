@@ -13,6 +13,9 @@ module.exports = {
             borderWidth: {
                 xs: '0.883721px',
             },
+            lineHeight: {
+                30: '30px',
+            },
         },
     },
     variants: {
