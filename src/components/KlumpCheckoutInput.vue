@@ -28,6 +28,7 @@
             :ref="inputProp.ref"
             id=""
             @focus="focusInput"
+            @blur="removeFocus"
             @input="emitInputData"
             v-model="inputData"
             class="w-full text-sm outline-none font-bold"
