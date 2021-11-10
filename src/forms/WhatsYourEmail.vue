@@ -1,7 +1,9 @@
 <template>
     <klump-checkout-container>
         <template v-slot:header> What's your email? </template>
-        <p class="mb-6">We'll use it to verify your account later.</p>
+        <p class="mb-6 leading-30">
+            We'll use it to verify your account later.
+        </p>
         <ValidationObserver v-slot="{ invalid }">
             <ValidationProvider rules="email|required" v-slot="{ errors }">
                 <klump-checkout-input

@@ -5,7 +5,7 @@
                 shadow-lg
                 bg-white
                 w-full
-                px-10
+                px-9
                 py-8
                 xl:w-1/3
                 relative
@@ -24,7 +24,7 @@
                 <klump-close-button></klump-close-button>
             </section>
             <section class="text-base">
-                <h1 class="hero-text bolded text-2xl my-6 text-primary">
+                <h1 class="hero-text bolded text-2xl mt-4 mb-2 text-primary">
                     <slot name="header"></slot>
                 </h1>
                 <slot></slot>
