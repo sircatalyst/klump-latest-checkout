@@ -1,31 +1,23 @@
 <template>
     <klump-checkout-container>
-        <template v-slot:header> Enter the code </template>
+        <template v-slot:header> What's your email? </template>
         <p class="mb-6 leading-30">
-            A code has been sent to <strong>+234 812 263 2296.</strong> You
-            should get it within 20 seconds.
+            We'll use it to verify your account later.
         </p>
         <ValidationObserver v-slot="{ invalid }">
-            <ValidationProvider rules="required" v-slot="{ errors }">
+            <ValidationProvider rules="email|required" v-slot="{ errors }">
                 <klump-checkout-input
-                    v-model="otp"
+                    v-model="email"
                     :customClass="'rounded'"
                     :inputProp="{
-                        type: 'tel',
-                        ref: 'otp',
+                        type: 'email',
+                        ref: 'email',
                     }"
                     :errorMessages="errors"
                 >
-                    Enter the 6-digit code here
+                    Email
                 </klump-checkout-input>
             </ValidationProvider>
-            <div class="mb-8">
-                <router-link :to="{ name: 'verifyyourdetails' }">
-                    <span class="block text-light-blue underline cursor-pointer"
-                        >Change phone number</span
-                    >
-                </router-link>
-            </div>
             <p class="text-xs text-primary-grey my-5">
                 This site is protected by reCAPTCHA Enterprise and the Google
                 <router-link to="#" class="text-black underline"
@@ -47,29 +39,23 @@
 <script>
 import { ValidationObserver, ValidationProvider } from 'vee-validate';
 import '../validations.js';
-import KlumpCheckoutButton from '../components/KlumpCheckoutButton.vue';
-import KlumpCheckoutContainer from '../components/KlumpCheckoutContainer.vue';
-import KlumpCheckoutInput from '../components/KlumpCheckoutInput.vue';
+import KlumpCheckoutButton from '@/components/KlumpCheckoutButton';
+import KlumpCheckoutContainer from '@/components/KlumpCheckoutContainer';
+import KlumpCheckoutInput from '@/components/KlumpCheckoutInput';
 
 export default {
-    name: 'EnterTheCode',
+    name: 'WhatsYourEmail',
     components: {
         ValidationObserver,
         ValidationProvider,
-        KlumpCheckoutContainer,
         KlumpCheckoutButton,
+        KlumpCheckoutContainer,
         KlumpCheckoutInput,
     },
     data() {
         return {
-            otp: '',
-            active: false,
+            email: '',
         };
-    },
-    methods: {
-        saveOtpCode(code) {
-            this.otp = code;
-        },
     },
 };
 </script>
