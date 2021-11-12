@@ -13,7 +13,7 @@
             >
                 <klump-checkout-input
                     v-model="password"
-                    :customClass="'rounded'"
+                    :customClass="'rounded mb-6'"
                     :inputProp="{
                         type: 'password',
                         ref: 'password',
@@ -49,7 +49,7 @@ import KlumpCheckoutContainer from '@/components/KlumpCheckoutContainer';
 import KlumpCheckoutInput from '@/components/KlumpCheckoutInput';
 
 export default {
-    name: 'WhatsYourEmail',
+    name: 'ChooseAPassword',
     components: {
         ValidationObserver,
         ValidationProvider,
