@@ -2,25 +2,35 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 const FourEasyPayments = () =>
     import(
-        /* webpackChunkName: 'FourEasyPayments' */ '../forms/FourEasyPayments'
+        /* webpackChunkName: 'FourEasyPayments' */ '../forms/onboarding/FourEasyPayments'
     );
 const VerifyYourDetails = () =>
     import(
-        /* webpackChunkName: 'VerifyYourDetails' */ '../forms/VerifyYourDetails'
+        /* webpackChunkName: 'VerifyYourDetails' */ '../forms/onboarding/VerifyYourDetails'
     );
 const EnterTheCode = () =>
-    import(/* webpackChunkName: 'EnterTheCode' */ '../forms/EnterTheCode');
+    import(
+        /* webpackChunkName: 'EnterTheCode' */ '../forms/onboarding/EnterTheCode'
+    );
 const WhatsYourEmail = () =>
-    import(/* webpackChunkName: 'WhatsYourEmail' */ '../forms/WhatsYourEmail');
+    import(
+        /* webpackChunkName: 'WhatsYourEmail' */ '../forms/onboarding/WhatsYourEmail'
+    );
 const ChooseAPassword = () =>
     import(
-        /* webpackChunkName: 'ChooseAPassword' */ '../forms/ChooseAPassword'
+        /* webpackChunkName: 'ChooseAPassword' */ '../forms/onboarding/ChooseAPassword'
     );
 const WhatsYourBvn = () =>
-    import(/* webpackChunkName: 'WhatsYourBvn' */ '../forms/WhatsYourBvn');
+    import(
+        /* webpackChunkName: 'WhatsYourBvn' */ '../forms/onboarding/WhatsYourBvn'
+    );
 const CompleteYourAccount = () =>
     import(
-        /* webpackChunkName: 'CompleteYourAccount' */ '../forms/CompleteYourAccount'
+        /* webpackChunkName: 'CompleteYourAccount' */ '../forms/onboarding/CompleteYourAccount'
+    );
+const ConnectYourBank = () =>
+    import(
+        /* webpackChunkName: 'ConnectYourBank' */ '../forms/profiling/ConnectYourBank'
     );
 
 Vue.use(VueRouter);
@@ -60,6 +70,11 @@ const routes = [
         path: '/complete-your-account',
         name: 'completeyouraccount',
         component: CompleteYourAccount,
+    },
+    {
+        path: '/connect-your-bank',
+        name: 'connectyourbank',
+        component: ConnectYourBank,
     },
 ];
 

@@ -38,7 +38,7 @@ export default {
 .bullet::before {
     display: inline-block;
     content: ' ';
-    background-image: url('../assets/images/bullet.svg');
+    background-image: url('../../assets/images/bullet.svg');
     background-size: 12px 12px;
     height: 12px;
     width: 12px;

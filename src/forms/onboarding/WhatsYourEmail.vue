@@ -38,7 +38,7 @@
 
 <script>
 import { ValidationObserver, ValidationProvider } from 'vee-validate';
-import '../validations.js';
+import '../../validations.js';
 import KlumpCheckoutButton from '@/components/KlumpCheckoutButton';
 import KlumpCheckoutContainer from '@/components/KlumpCheckoutContainer';
 import KlumpCheckoutInput from '@/components/KlumpCheckoutInput';
