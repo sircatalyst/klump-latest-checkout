@@ -90,7 +90,7 @@
 
 <script>
 import { ValidationObserver, ValidationProvider } from 'vee-validate';
-import '../validations.js';
+import '../../validations.js';
 import VueCountryCode from 'vue-country-code';
 import KlumpCheckoutContainer from '@/components/KlumpCheckoutContainer';
 import KlumpCheckoutButton from '@/components/KlumpCheckoutButton';
