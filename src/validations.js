@@ -27,3 +27,7 @@ extend('bvn-valid', (value) => {
     const bvnRegex = /^[0-9]{11}$/;
     return bvnRegex.test(value);
 });
+
+extend('terms-checked', (value) => {
+    return value === true;
+});
