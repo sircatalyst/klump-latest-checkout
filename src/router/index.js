@@ -32,6 +32,10 @@ const ConnectYourBank = () =>
     import(
         /* webpackChunkName: 'ConnectYourBank' */ '../forms/profiling/ConnectYourBank'
     );
+const CompleteCheckout = () =>
+    import(
+        /* webpackChunkName: 'CompleteCheckout' */ '../forms/profiling/CompleteCheckout'
+    );
 
 Vue.use(VueRouter);
 
@@ -75,6 +79,11 @@ const routes = [
         path: '/connect-your-bank',
         name: 'connectyourbank',
         component: ConnectYourBank,
+    },
+    {
+        path: '/complete-checkout',
+        name: 'completecheckout',
+        component: CompleteCheckout,
     },
 ];
 
