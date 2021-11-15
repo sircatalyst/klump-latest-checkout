@@ -16,6 +16,9 @@ module.exports = {
             lineHeight: {
                 30: '30px',
             },
+            width: {
+                sm: '48.85%',
+            },
         },
     },
     variants: {

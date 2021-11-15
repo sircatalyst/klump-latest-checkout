@@ -24,6 +24,10 @@ const WhatsYourBvn = () =>
     import(
         /* webpackChunkName: 'WhatsYourBvn' */ '../forms/onboarding/WhatsYourBvn'
     );
+const CompleteYourAccount = () =>
+    import(
+        /* webpackChunkName: 'CompleteYourAccount' */ '../forms/onboarding/CompleteYourAccount'
+    );
 const ConnectYourBank = () =>
     import(
         /* webpackChunkName: 'ConnectYourBank' */ '../forms/profiling/ConnectYourBank'
@@ -65,6 +69,11 @@ const routes = [
         path: '/whats-your-bvn',
         name: 'whatsyourbvn',
         component: WhatsYourBvn,
+    },
+    {
+        path: '/complete-your-account',
+        name: 'completeyouraccount',
+        component: CompleteYourAccount,
     },
     {
         path: '/connect-your-bank',
