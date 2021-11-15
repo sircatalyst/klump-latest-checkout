@@ -36,6 +36,10 @@ const CompleteCheckout = () =>
     import(
         /* webpackChunkName: 'CompleteCheckout' */ '../forms/profiling/CompleteCheckout'
     );
+const FourInterestFreeInstallment = () =>
+    import(
+        /* webpackChunkName: 'FourInterestFreeInstallment' */ '../forms/checkout/FourInterestFreeInstallment'
+    );
 
 Vue.use(VueRouter);
 
@@ -84,6 +88,11 @@ const routes = [
         path: '/complete-checkout',
         name: 'completecheckout',
         component: CompleteCheckout,
+    },
+    {
+        path: '/4-insterest-free-installment',
+        name: '4interestfreeinstallment',
+        component: FourInterestFreeInstallment,
     },
 ];
 
