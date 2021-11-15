@@ -9,12 +9,16 @@ module.exports = {
                 input: '#E5E5E5',
                 'left-b': 'rgba(143, 143, 143, 0.5)',
                 'light-blue': '#4062D1',
+                tertiary: '#4CAF50',
+                secondary: '#171717',
             },
             borderWidth: {
                 xs: '0.883721px',
             },
             lineHeight: {
                 30: '30px',
+                25: '25px',
+                22: '22px',
             },
             width: {
                 sm: '48.85%',
