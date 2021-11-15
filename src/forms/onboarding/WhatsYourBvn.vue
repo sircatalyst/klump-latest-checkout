@@ -8,7 +8,7 @@
             <ValidationProvider rules="bvn-valid|required" v-slot="{ errors }">
                 <klump-checkout-input
                     v-model="password"
-                    :customClass="'rounded'"
+                    :customClass="'rounded mb-6'"
                     :inputProp="{
                         type: 'tel',
                         ref: 'bvn',
@@ -60,7 +60,7 @@ import KlumpCheckoutContainer from '@/components/KlumpCheckoutContainer';
 import KlumpCheckoutInput from '@/components/KlumpCheckoutInput';
 
 export default {
-    name: 'WhatsYourEmail',
+    name: 'WhatsYourBvn',
     components: {
         ValidationObserver,
         ValidationProvider,

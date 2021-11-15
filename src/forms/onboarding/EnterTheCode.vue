@@ -9,7 +9,7 @@
             <ValidationProvider rules="required" v-slot="{ errors }">
                 <klump-checkout-input
                     v-model="otp"
-                    :customClass="'rounded'"
+                    :customClass="'rounded mb-6'"
                     :inputProp="{
                         type: 'tel',
                         ref: 'otp',

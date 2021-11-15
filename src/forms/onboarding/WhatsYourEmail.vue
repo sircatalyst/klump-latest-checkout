@@ -8,7 +8,7 @@
             <ValidationProvider rules="email|required" v-slot="{ errors }">
                 <klump-checkout-input
                     v-model="email"
-                    :customClass="'rounded'"
+                    :customClass="'rounded mb-6'"
                     :inputProp="{
                         type: 'email',
                         ref: 'email',
