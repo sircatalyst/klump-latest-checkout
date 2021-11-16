@@ -17,7 +17,7 @@
                     <h1 class="hero-text text-primary text-2xl tracking-wide">
                         Klump
                     </h1>
-                    <h3 class="text-base">
+                    <h3 class="text-base" id="merchant-collab">
                         Proud partner of <span class="font-bold">Konga</span>
                     </h3>
                 </div>

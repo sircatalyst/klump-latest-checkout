@@ -42,6 +42,10 @@ const SuccessfulTransaction = () =>
     import(
         /* webpackChunkName: 'SuccessfulTransaction' */ '../forms/returning_user/SuccessfulTransaction'
     );
+const FourInterestFreeInstallment = () =>
+    import(
+        /* webpackChunkName: 'FourInterestFreeInstallment' */ '../forms/checkout/FourInterestFreeInstallment'
+    );
 
 Vue.use(VueRouter);
 
@@ -100,6 +104,11 @@ const routes = [
         path: '/successful-transaction',
         name: 'successfultransaction',
         component: SuccessfulTransaction,
+    },
+    {
+        path: '/4-insterest-free-installment',
+        name: '4interestfreeinstallment',
+        component: FourInterestFreeInstallment,
     },
 ];
 

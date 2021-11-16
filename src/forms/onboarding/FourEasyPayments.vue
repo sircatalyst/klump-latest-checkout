@@ -1,7 +1,7 @@
 <template>
     <klump-checkout-container>
         <template v-slot:header> Pay in 4 easy payments </template>
-        <ul class="font-bold flex flex-col space-y-10 mb-12 relative">
+        <ul class="font-bold flex flex-col space-y-10 mt-5 mb-12 relative">
             <div class="relative">
                 <li class="bullet"><span>Continue with Klump</span></li>
                 <div class="vertical"></div>
@@ -38,7 +38,7 @@ export default {
 .bullet::before {
     display: inline-block;
     content: ' ';
-    background-image: url('../../assets/images/bullet.svg');
+    background-image: url('../../assets/icons/bullet.svg');
     background-size: 12px 12px;
     height: 12px;
     width: 12px;
