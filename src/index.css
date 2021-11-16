@@ -28,3 +28,8 @@ body {
 .hero-text {
     font-family: 'Avenir-Bold';
 }
+
+input[type='checkbox'] {
+    height: 20px;
+    width: 20px;
+}
