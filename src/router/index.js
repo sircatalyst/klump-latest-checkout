@@ -36,6 +36,8 @@ const CompleteCheckout = () =>
     import(
         /* webpackChunkName: 'CompleteCheckout' */ '../forms/profiling/CompleteCheckout'
     );
+const SignIn = () =>
+    import(/* webpackChunkName: 'SignIn' */ '../forms/returning_user/SignIn');
 
 Vue.use(VueRouter);
 
@@ -84,6 +86,11 @@ const routes = [
         path: '/complete-checkout',
         name: 'completecheckout',
         component: CompleteCheckout,
+    },
+    {
+        path: '/signin',
+        name: 'signin',
+        component: SignIn,
     },
 ];
 
