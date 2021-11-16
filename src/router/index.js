@@ -38,6 +38,10 @@ const CompleteCheckout = () =>
     );
 const SignIn = () =>
     import(/* webpackChunkName: 'SignIn' */ '../forms/returning_user/SignIn');
+const SuccessfulTransaction = () =>
+    import(
+        /* webpackChunkName: 'SuccessfulTransaction' */ '../forms/returning_user/SuccessfulTransaction'
+    );
 
 Vue.use(VueRouter);
 
@@ -91,6 +95,11 @@ const routes = [
         path: '/signin',
         name: 'signin',
         component: SignIn,
+    },
+    {
+        path: '/successful-transaction',
+        name: 'successfultransaction',
+        component: SuccessfulTransaction,
     },
 ];
 
