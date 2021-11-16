@@ -212,10 +212,6 @@ export default {
 };
 </script>
 <style scoped>
-input[type='checkbox'] {
-    height: 20px;
-    width: 20px;
-}
 @media (min-height: 400px) and (min-width: 1366px) {
     .responsive-height {
         height: 279px;

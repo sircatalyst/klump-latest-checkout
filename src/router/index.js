@@ -36,6 +36,8 @@ const CompleteCheckout = () =>
     import(
         /* webpackChunkName: 'CompleteCheckout' */ '../forms/profiling/CompleteCheckout'
     );
+const SignIn = () =>
+    import(/* webpackChunkName: 'SignIn' */ '../forms/returning_user/SignIn');
 const FourInterestFreeInstallment = () =>
     import(
         /* webpackChunkName: 'FourInterestFreeInstallment' */ '../forms/checkout/FourInterestFreeInstallment'
@@ -88,6 +90,11 @@ const routes = [
         path: '/complete-checkout',
         name: 'completecheckout',
         component: CompleteCheckout,
+    },
+    {
+        path: '/signin',
+        name: 'signin',
+        component: SignIn,
     },
     {
         path: '/4-insterest-free-installment',

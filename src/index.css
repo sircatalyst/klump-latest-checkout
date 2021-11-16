@@ -29,6 +29,10 @@ body {
     font-family: 'Avenir-Bold';
 }
 
+input[type='checkbox'] {
+    height: 20px;
+    width: 20px;
+}
 .container::-webkit-scrollbar {
     width: 5px;
 }
