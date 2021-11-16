@@ -1,0 +1,82 @@
+<template>
+    <klump-checkout-container>
+        <template v-slot:header> Sign in </template>
+        <p class="mb-6 leading-30">
+            Please enter your Klump email and password to check out
+        </p>
+        <ValidationObserver v-slot="{ invalid }">
+            <ValidationProvider rules="email|required" v-slot="{ errors }">
+                <klump-checkout-input
+                    v-model="email"
+                    :customClass="'rounded-tl-md rounded-tr-md'"
+                    :inputProp="{
+                        type: 'email',
+                        ref: 'email',
+                    }"
+                    :errorMessages="errors"
+                >
+                    Email
+                </klump-checkout-input>
+            </ValidationProvider>
+            <ValidationProvider
+                rules="password-valid|required"
+                v-slot="{ errors }"
+            >
+                <klump-checkout-input
+                    v-model="password"
+                    :customClass="'rounded-bl-md rounded-br-md'"
+                    :inputProp="{
+                        type: 'password',
+                        ref: 'password',
+                    }"
+                    :errorMessages="errors"
+                >
+                    Password
+                </klump-checkout-input>
+            </ValidationProvider>
+            <ValidationProvider rules="required|terms-checked" tag="div">
+                <div class="flex my-5">
+                    <input type="checkbox" v-model="terms" name="" id="" />
+                    <span class="inline-block ml-3 text-xs leading-5"
+                        >I agree to the
+                        <router-link to="" class="font-bold underline"
+                            >Klump Shopping Service</router-link
+                        >
+                        (incl. electronic communications) and
+                        <router-link to="" class="font-bold underline"
+                            >Privacy Policy</router-link
+                        ></span
+                    >
+                </div>
+            </ValidationProvider>
+            <klump-checkout-button :disabled="invalid"
+                >Continue</klump-checkout-button
+            >
+        </ValidationObserver>
+    </klump-checkout-container>
+</template>
+
+<script>
+import { ValidationObserver, ValidationProvider } from 'vee-validate';
+import '../../validations.js';
+import KlumpCheckoutButton from '@/components/KlumpCheckoutButton';
+import KlumpCheckoutContainer from '@/components/KlumpCheckoutContainer';
+import KlumpCheckoutInput from '@/components/KlumpCheckoutInput';
+
+export default {
+    name: 'SignIn',
+    components: {
+        ValidationObserver,
+        ValidationProvider,
+        KlumpCheckoutButton,
+        KlumpCheckoutContainer,
+        KlumpCheckoutInput,
+    },
+    data() {
+        return {
+            email: '',
+            password: '',
+        };
+    },
+};
+</script>
