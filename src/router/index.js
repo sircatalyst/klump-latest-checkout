@@ -38,6 +38,10 @@ const CompleteCheckout = () =>
     );
 const SignIn = () =>
     import(/* webpackChunkName: 'SignIn' */ '../forms/returning_user/SignIn');
+const FourInterestFreeInstallment = () =>
+    import(
+        /* webpackChunkName: 'FourInterestFreeInstallment' */ '../forms/checkout/FourInterestFreeInstallment'
+    );
 
 Vue.use(VueRouter);
 
@@ -91,6 +95,11 @@ const routes = [
         path: '/signin',
         name: 'signin',
         component: SignIn,
+    },
+    {
+        path: '/4-insterest-free-installment',
+        name: '4interestfreeinstallment',
+        component: FourInterestFreeInstallment,
     },
 ];
 
