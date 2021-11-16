@@ -2,7 +2,7 @@
     <klump-checkout-container>
         <template v-slot:header> Complete your account</template>
         <ValidationObserver v-slot="{ invalid }" tag="form">
-            <div class="responsive-height">
+            <div class="responsive-height container">
                 <p class="mb-6 leading-30">
                     Please share your <strong>billing details.</strong> We’ll
                     only ask you for this information once and you can easily

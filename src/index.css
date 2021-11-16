@@ -28,3 +28,15 @@ body {
 .hero-text {
     font-family: 'Avenir-Bold';
 }
+
+.container::-webkit-scrollbar {
+    width: 5px;
+}
+.container::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+.container::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #787573;
+    height: 20px;
+}
