@@ -46,6 +46,8 @@ const FourInterestFreeInstallment = () =>
     import(
         /* webpackChunkName: 'FourInterestFreeInstallment' */ '../forms/checkout/FourInterestFreeInstallment'
     );
+const Pay = () =>
+    import(/* webpackChunkName: 'Pay' */ '../forms/returning_user/Pay');
 
 Vue.use(VueRouter);
 
@@ -109,6 +111,11 @@ const routes = [
         path: '/4-insterest-free-installment',
         name: '4interestfreeinstallment',
         component: FourInterestFreeInstallment,
+    },
+    {
+        path: '/pay',
+        name: 'pay',
+        component: Pay,
     },
 ];
 
