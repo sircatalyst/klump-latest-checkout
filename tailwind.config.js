@@ -11,9 +11,11 @@ module.exports = {
                 'light-blue': '#4062D1',
                 tertiary: '#4CAF50',
                 secondary: '#171717',
+                divider: '#F4F4F4',
             },
             borderWidth: {
                 xs: '0.883721px',
+                sm: '1.5px',
             },
             lineHeight: {
                 30: '30px',
@@ -22,6 +24,9 @@ module.exports = {
             },
             width: {
                 sm: '48.85%',
+            },
+            margin: {
+                xs: '0.8px',
             },
         },
     },
