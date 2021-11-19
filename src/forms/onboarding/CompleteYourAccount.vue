@@ -1,7 +1,7 @@
 <template>
     <klump-checkout-container>
         <template v-slot:header> Complete your account</template>
-        <ValidationObserver v-slot="{ invalid }" tag="form">
+        <ValidationObserver v-slot="{ invalid }">
             <div class="responsive-height container">
                 <p class="mb-6 leading-30">
                     Please share your <strong>billing details.</strong> We’ll
@@ -16,7 +16,7 @@
                             tag="div"
                         >
                             <klump-checkout-input
-                                v-model="firstname"
+                                v-model="payload.firstname"
                                 :customClass="'rounded'"
                                 :inputProp="{
                                     type: 'text',
@@ -35,7 +35,7 @@
                             tag="div"
                         >
                             <klump-checkout-input
-                                v-model="lastname"
+                                v-model="payload.lastname"
                                 :customClass="'rounded'"
                                 :inputProp="{
                                     type: 'text',
@@ -54,7 +54,7 @@
                     tag="div"
                 >
                     <klump-checkout-input
-                        v-model="dob"
+                        v-model="payload.dob"
                         :customClass="'rounded'"
                         :inputProp="{
                             type: 'date',
@@ -71,7 +71,7 @@
                         tag="div"
                     >
                         <klump-checkout-input
-                            v-model="address"
+                            v-model="payload.address"
                             :customClass="'rounded mb-3'"
                             :inputProp="{
                                 type: 'text',
@@ -88,7 +88,7 @@
                         tag="div"
                     >
                         <klump-checkout-input
-                            v-model="apartment"
+                            v-model="payload.apartment"
                             :customClass="'rounded mb-3'"
                             :inputProp="{
                                 type: 'text',
@@ -107,7 +107,7 @@
                                 tag="div"
                             >
                                 <klump-checkout-input
-                                    v-model="city"
+                                    v-model="payload.city"
                                     :customClass="'rounded'"
                                     :inputProp="{
                                         type: 'text',
@@ -126,7 +126,7 @@
                                 tag="div"
                             >
                                 <klump-checkout-input
-                                    v-model="state"
+                                    v-model="payload.state"
                                     :customClass="'rounded'"
                                     :inputProp="{
                                         type: 'text',
@@ -145,7 +145,7 @@
                         tag="div"
                     >
                         <klump-checkout-input
-                            v-model="zipcode"
+                            v-model="payload.zipcode"
                             :customClass="'rounded'"
                             :inputProp="{
                                 type: 'text',
@@ -160,7 +160,7 @@
             </div>
             <ValidationProvider rules="required|terms-checked" tag="div">
                 <div class="flex my-5">
-                    <input type="checkbox" v-model="terms" name="" id="" />
+                    <input type="checkbox" v-model="payload.terms" name="" id="" />
                     <span class="inline-block ml-3 text-xs leading-5"
                         >I agree to the
                         <router-link to="" class="font-bold underline"
@@ -173,9 +173,11 @@
                     >
                 </div>
             </ValidationProvider>
-            <klump-checkout-button :disabled="invalid"
-                >Continue</klump-checkout-button
-            >
+            <span @click="gotoNextModal(invalid)">
+                <klump-checkout-button :disabled="invalid"
+                    >Continue</klump-checkout-button
+                >
+            </span>
         </ValidationObserver>
     </klump-checkout-container>
 </template>
@@ -198,17 +200,29 @@ export default {
     },
     data() {
         return {
-            firstname: '',
-            lastname: '',
-            dob: '',
-            address: '',
-            apartment: '',
-            city: '',
-            state: '',
-            zipcode: '',
-            terms: false,
+            payload: {
+                firstname: '',
+                lastname: '',
+                dob: '',
+                address: '',
+                apartment: '',
+                city: '',
+                state: '',
+                zipcode: '',
+                terms: false,
+            }
         };
-    },
+    }, 
+    methods: {
+        gotoNextModal(invalid) {
+            if(!invalid) {
+                this.$emit('gotoNextModal', {
+                    next: 'whatsYourBvnModal',
+                    payload: { ...this.payload }
+                });
+            }
+        }
+    }
 };
 </script>
 <style scoped>

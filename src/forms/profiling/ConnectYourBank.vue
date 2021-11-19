@@ -38,7 +38,9 @@
             to Klump
         </h1>
         <p class="mb-6 leading-30 text-center">Let’s get your loan approved</p>
-        <klump-checkout-button>Connect your account</klump-checkout-button>
+        <span @click="gotoNextModal">
+            <klump-checkout-button>Connect your account</klump-checkout-button>
+        </span>
     </klump-checkout-container>
 </template>
 
@@ -52,5 +54,10 @@ export default {
         KlumpCheckoutButton,
         KlumpCheckoutContainer,
     },
+    methods: {
+        gotoNextModal() {
+            this.$emit('gotoNextModal', { next: 'completeCheckoutModal' });
+        }
+    }
 };
 </script>

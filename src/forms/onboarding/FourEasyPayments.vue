@@ -18,7 +18,9 @@
             By pressing Continue you consent to Klump sharing billing
             information with this merchant
         </p>
-        <klump-checkout-button> Continue </klump-checkout-button>
+        <span @click="gotoNextModal">
+            <klump-checkout-button>Continue</klump-checkout-button>
+        </span>
     </klump-checkout-container>
 </template>
 
@@ -32,6 +34,11 @@ export default {
         KlumpCheckoutContainer,
         KlumpCheckoutButton,
     },
+    methods: {
+        gotoNextModal() {
+            this.$emit('gotoNextModal', { next: 'verifyYourDetailsModal'});
+        }
+    }
 };
 </script>
 <style scoped>

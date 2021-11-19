@@ -80,9 +80,11 @@
                     >
                     apply.
                 </p>
-                <klump-checkout-button :disabled="invalid"
-                    >Continue</klump-checkout-button
-                >
+                <span @click="gotoNextModal(invalid)">
+                    <klump-checkout-button :disabled="invalid"
+                        >Continue</klump-checkout-button
+                    >
+                </span>
             </ValidationProvider>
         </ValidationObserver>
     </klump-checkout-container>
@@ -119,7 +121,15 @@ export default {
         onSelect({ dialCode }) {
             this.dialCode = dialCode;
         },
-    },
+        gotoNextModal(invalid) {
+            if(!invalid) {
+                this.$emit('gotoNextModal', {
+                    next: 'enterTheCodeModal',
+                    payload: { tel: this.tel },
+                });
+            }
+        }
+    }
 };
 </script>
 <style>

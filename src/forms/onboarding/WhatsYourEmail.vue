@@ -29,9 +29,11 @@
                 >
                 apply.
             </p>
-            <klump-checkout-button :disabled="invalid"
-                >Continue</klump-checkout-button
-            >
+            <span @click='gotoNextModal(invalid)'>
+                <klump-checkout-button :disabled="invalid"
+                    >Continue</klump-checkout-button
+                >
+            </span>
         </ValidationObserver>
     </klump-checkout-container>
 </template>
@@ -57,5 +59,15 @@ export default {
             email: '',
         };
     },
+    methods: {
+        gotoNextModal(invalid) {
+            if(!invalid) {
+                this.$emit('gotoNextModal', {
+                    next: 'chooseAPasswordModal',
+                    payload: { email: this.email },
+                });
+            }
+        }
+    }
 };
 </script>

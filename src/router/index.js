@@ -48,10 +48,17 @@ const FourInterestFreeInstallment = () =>
     );
 const Pay = () =>
     import(/* webpackChunkName: 'Pay' */ '../forms/returning_user/Pay');
+const Home = () =>
+    import(/* webpackChunkName: 'Pay' */ '../pages/Home');
 
 Vue.use(VueRouter);
 
 const routes = [
+    {
+        path: '/',
+        name: 'home',
+        component: Home,
+    },
     {
         path: '/pay-in-4-easy-payments',
         name: 'foureasypayments',

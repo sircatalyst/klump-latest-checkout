@@ -1,4 +1,4 @@
-<template>
+<template @click="close">
     <div>
         <svg
             class="absolute top-2 -right-4 cursor-pointer"
@@ -19,5 +19,11 @@
 <script>
 export default {
     name: 'KlumpCloseButton',
+    methods: {
+        close() {
+            this.data = true;
+            console.log("close this modalt")
+        }
+    }
 };
 </script>
