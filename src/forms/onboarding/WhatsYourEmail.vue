@@ -7,7 +7,7 @@
         <ValidationObserver v-slot="{ invalid }">
             <ValidationProvider rules="email|required" v-slot="{ errors }">
                 <klump-checkout-input
-                    v-model="email"
+                    v-model="payload.email"
                     :customClass="'rounded mb-6'"
                     :inputProp="{
                         type: 'email',
@@ -29,7 +29,7 @@
                 >
                 apply.
             </p>
-            <span @click='gotoNextModal(invalid)'>
+            <span @click="gotoNextModal(invalid, { email: payload.email }, 'chooseAPasswordModal')">
                 <klump-checkout-button :disabled="invalid"
                     >Continue</klump-checkout-button
                 >
@@ -44,30 +44,17 @@ import '../../validations.js';
 import KlumpCheckoutButton from '@/components/KlumpCheckoutButton';
 import KlumpCheckoutContainer from '@/components/KlumpCheckoutContainer';
 import KlumpCheckoutInput from '@/components/KlumpCheckoutInput';
+import gotoNextModalMixin from '../../mixins/gotoNextModal';
 
 export default {
     name: 'WhatsYourEmail',
+    mixins: [gotoNextModalMixin],
     components: {
         ValidationObserver,
         ValidationProvider,
         KlumpCheckoutButton,
         KlumpCheckoutContainer,
         KlumpCheckoutInput,
-    },
-    data() {
-        return {
-            email: '',
-        };
-    },
-    methods: {
-        gotoNextModal(invalid) {
-            if(!invalid) {
-                this.$emit('gotoNextModal', {
-                    next: 'chooseAPasswordModal',
-                    payload: { email: this.email },
-                });
-            }
-        }
     }
 };
 </script>
