@@ -22,7 +22,6 @@ export default {
     methods: {
         close() {
             this.data = true;
-            console.log("close this modalt")
         }
     }
 };

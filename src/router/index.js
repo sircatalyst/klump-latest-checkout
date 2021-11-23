@@ -50,6 +50,8 @@ const Pay = () =>
     import(/* webpackChunkName: 'Pay' */ '../forms/returning_user/Pay');
 const Home = () =>
     import(/* webpackChunkName: 'Pay' */ '../pages/Home');
+const Login = () =>
+    import(/* webpackChunkName: 'Pay' */ '../pages/Login');
 
 Vue.use(VueRouter);
 
@@ -58,6 +60,11 @@ const routes = [
         path: '/',
         name: 'home',
         component: Home,
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: Login,
     },
     {
         path: '/pay-in-4-easy-payments',

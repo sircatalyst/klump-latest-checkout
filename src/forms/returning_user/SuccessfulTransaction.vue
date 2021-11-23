@@ -28,9 +28,11 @@
 <script>
 import KlumpCheckoutButton from '@/components/KlumpCheckoutButton';
 import KlumpCheckoutContainer from '@/components/KlumpCheckoutContainer';
+import gotoNextModalMixin from '../../mixins/gotoNextModal';
 
 export default {
     name: 'SuccessfulTransaction',
+    mixins: [gotoNextModalMixin],
     components: {
         KlumpCheckoutButton,
         KlumpCheckoutContainer,

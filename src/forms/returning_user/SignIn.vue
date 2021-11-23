@@ -36,7 +36,7 @@
             </ValidationProvider>
             <ValidationProvider rules="required|terms-checked" tag="div">
                 <div class="flex my-5">
-                    <input type="checkbox" v-model="terms" name="" id="" />
+                    <input type="checkbox" v-model="loginPayload.terms" name="" id="" />
                     <span class="inline-block ml-3 text-xs leading-5"
                         >I agree to the
                         <router-link to="" class="font-bold underline"
@@ -49,9 +49,11 @@
                     >
                 </div>
             </ValidationProvider>
-            <klump-checkout-button :disabled="invalid"
-                >Continue</klump-checkout-button
-            >
+            <span @click="gotoNextModal(false, {}, 'payModal')">
+                <klump-checkout-button :disabled="invalid"
+                    >Continue</klump-checkout-button
+                >
+            </span>
         </ValidationObserver>
     </klump-checkout-container>
 </template>
@@ -62,9 +64,11 @@ import '../../validations.js';
 import KlumpCheckoutButton from '@/components/KlumpCheckoutButton';
 import KlumpCheckoutContainer from '@/components/KlumpCheckoutContainer';
 import KlumpCheckoutInput from '@/components/KlumpCheckoutInput';
+import gotoNextModalMixin from '../../mixins/gotoNextModal';
 
 export default {
     name: 'SignIn',
+    mixins: [gotoNextModalMixin],
     components: {
         ValidationObserver,
         ValidationProvider,

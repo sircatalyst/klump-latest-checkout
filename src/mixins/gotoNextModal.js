@@ -1,6 +1,6 @@
 const gotoNextModalMixin = {
-    data() {
-        return {
+	data() {
+		return {
 			tel: '',
 			payload: {
 				dialCode: '',
@@ -11,34 +11,39 @@ const gotoNextModalMixin = {
 				email: '',
 			},
 			form: {
-                terms: false,
-            }
-        };
-    },
-    watch: {
-        payload: {
+				terms: false,
+			},
+			loginPayload: {
+				terms: false,
+				password: '',
+				email: '',
+			},
+		};
+	},
+	watch: {
+		payload: {
 			deep: true,
 			handler(value) {
-                this.tel = `+${value.dialCode} `;
+				this.tel = `+${value.dialCode} `;
 			},
-        },
-    },		
-    methods: {
-        onSelect({ dialCode: dialCode }) {
-            this.payload.dialCode = dialCode;
-        },
+		},
+	},
+	methods: {
+		onSelect({ dialCode: dialCode }) {
+			this.payload.dialCode = dialCode;
+		},
 		saveOtpCode(code) {
-            this.payload.otp = code;
-        },
+			this.payload.otp = code;
+		},
 		gotoNextModal(isValid, data, nextModal) {
-			if(!isValid) {
+			if (!isValid) {
 				this.$emit('gotoNextModal', {
 					next: nextModal,
 					payload: { ...data },
 				});
 			}
 		}
-    }
+	}
 };
 export default gotoNextModalMixin;
 
