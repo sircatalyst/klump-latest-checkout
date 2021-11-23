@@ -7,7 +7,7 @@
         <ValidationObserver v-slot="{ invalid }">
             <ValidationProvider rules="bvn-valid|required" v-slot="{ errors }">
                 <klump-checkout-input
-                    v-model="password"
+                    v-model="payload.bvn"
                     :customClass="'rounded mb-6'"
                     :inputProp="{
                         type: 'tel',
@@ -45,9 +45,11 @@
                     </svg>
                 </div>
             </div>
-            <klump-checkout-button :disabled="invalid"
-                >Continue</klump-checkout-button
-            >
+            <span @click="gotoNextModal(invalid, { bvn: payload.bvn }, 'connectYourBankModal')">
+                <klump-checkout-button :disabled="invalid"
+                    >Continue</klump-checkout-button
+                >
+            </span>
         </ValidationObserver>
     </klump-checkout-container>
 </template>
@@ -58,20 +60,17 @@ import '../../validations.js';
 import KlumpCheckoutButton from '@/components/KlumpCheckoutButton';
 import KlumpCheckoutContainer from '@/components/KlumpCheckoutContainer';
 import KlumpCheckoutInput from '@/components/KlumpCheckoutInput';
+import gotoNextModalMixin from '../../mixins/gotoNextModal';
 
 export default {
     name: 'WhatsYourBvn',
+    mixins: [gotoNextModalMixin],
     components: {
         ValidationObserver,
         ValidationProvider,
         KlumpCheckoutButton,
         KlumpCheckoutContainer,
         KlumpCheckoutInput,
-    },
-    data() {
-        return {
-            password: '',
-        };
     },
 };
 </script>

@@ -18,16 +18,20 @@
             By pressing Continue you consent to Klump sharing billing
             information with this merchant
         </p>
-        <klump-checkout-button> Continue </klump-checkout-button>
+        <span @click="gotoNextModal(false, {}, 'verifyYourDetailsModal')">
+            <klump-checkout-button>Continue</klump-checkout-button>
+        </span>
     </klump-checkout-container>
 </template>
 
 <script>
 import KlumpCheckoutContainer from '@/components/KlumpCheckoutContainer';
 import KlumpCheckoutButton from '@/components/KlumpCheckoutButton';
+import gotoNextModalMixin from '../../mixins/gotoNextModal';
 
 export default {
     name: 'FourEasyPayments',
+    mixins: [gotoNextModalMixin],
     components: {
         KlumpCheckoutContainer,
         KlumpCheckoutButton,

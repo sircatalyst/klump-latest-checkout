@@ -8,7 +8,7 @@
         <ValidationObserver v-slot="{ invalid }">
             <ValidationProvider rules="required" v-slot="{ errors }">
                 <klump-checkout-input
-                    v-model="otp"
+                    v-model="payload.otp"
                     :customClass="'rounded mb-6'"
                     :inputProp="{
                         type: 'tel',
@@ -37,9 +37,11 @@
                 >
                 apply.
             </p>
-            <klump-checkout-button :disabled="invalid"
-                >Continue</klump-checkout-button
-            >
+            <span @click="gotoNextModal(invalid, { otp: payload.otp }, 'whatsYourEmailModal')">
+                <klump-checkout-button :disabled="invalid"
+                    >Continue</klump-checkout-button
+                >
+            </span>
         </ValidationObserver>
     </klump-checkout-container>
 </template>
@@ -50,26 +52,17 @@ import '../../validations.js';
 import KlumpCheckoutButton from '@/components/KlumpCheckoutButton.vue';
 import KlumpCheckoutContainer from '@/components/KlumpCheckoutContainer.vue';
 import KlumpCheckoutInput from '@/components/KlumpCheckoutInput.vue';
+import gotoNextModalMixin from '../../mixins/gotoNextModal';
 
 export default {
     name: 'EnterTheCode',
+    mixins: [gotoNextModalMixin],
     components: {
         ValidationObserver,
         ValidationProvider,
         KlumpCheckoutContainer,
         KlumpCheckoutButton,
         KlumpCheckoutInput,
-    },
-    data() {
-        return {
-            otp: '',
-            active: false,
-        };
-    },
-    methods: {
-        saveOtpCode(code) {
-            this.otp = code;
-        },
     },
 };
 </script>

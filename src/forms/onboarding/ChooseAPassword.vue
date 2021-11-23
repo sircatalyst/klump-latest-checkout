@@ -12,7 +12,7 @@
                 v-slot="{ errors }"
             >
                 <klump-checkout-input
-                    v-model="password"
+                    v-model="payload.password"
                     :customClass="'rounded mb-6'"
                     :inputProp="{
                         type: 'password',
@@ -34,9 +34,11 @@
                 >
                 apply.
             </p>
-            <klump-checkout-button :disabled="invalid"
-                >Continue</klump-checkout-button
-            >
+            <span @click="gotoNextModal(invalid, { password: payload.password }, 'completeYourAccountModal')">
+                <klump-checkout-button :disabled="invalid"
+                    >Continue</klump-checkout-button
+                >
+            </span>
         </ValidationObserver>
     </klump-checkout-container>
 </template>
@@ -47,20 +49,17 @@ import '../../validations.js';
 import KlumpCheckoutButton from '@/components/KlumpCheckoutButton';
 import KlumpCheckoutContainer from '@/components/KlumpCheckoutContainer';
 import KlumpCheckoutInput from '@/components/KlumpCheckoutInput';
+import gotoNextModalMixin from '../../mixins/gotoNextModal';
 
 export default {
     name: 'ChooseAPassword',
+    mixins: [gotoNextModalMixin],
     components: {
         ValidationObserver,
         ValidationProvider,
         KlumpCheckoutButton,
         KlumpCheckoutContainer,
         KlumpCheckoutInput,
-    },
-    data() {
-        return {
-            password: '',
-        };
     },
 };
 </script>

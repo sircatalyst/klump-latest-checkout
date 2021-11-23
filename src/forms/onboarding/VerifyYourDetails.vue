@@ -80,9 +80,11 @@
                     >
                     apply.
                 </p>
-                <klump-checkout-button :disabled="invalid"
-                    >Continue</klump-checkout-button
-                >
+                <span @click="gotoNextModal(invalid, { tel }, 'enterTheCodeModal')">
+                    <klump-checkout-button :disabled="invalid"
+                        >Continue</klump-checkout-button
+                    >
+                </span>
             </ValidationProvider>
         </ValidationObserver>
     </klump-checkout-container>
@@ -94,31 +96,17 @@ import '../../validations.js';
 import VueCountryCode from 'vue-country-code';
 import KlumpCheckoutContainer from '@/components/KlumpCheckoutContainer';
 import KlumpCheckoutButton from '@/components/KlumpCheckoutButton';
+import gotoNextModalMixin from '../../mixins/gotoNextModal';
 
 export default {
     name: 'VerifyYourDetails',
+    mixins: [gotoNextModalMixin],
     components: {
         ValidationObserver,
         ValidationProvider,
         VueCountryCode,
         KlumpCheckoutContainer,
         KlumpCheckoutButton,
-    },
-    data() {
-        return {
-            dialCode: '',
-            tel: '',
-        };
-    },
-    watch: {
-        dialCode() {
-            this.tel = `+${this.dialCode} `;
-        },
-    },
-    methods: {
-        onSelect({ dialCode }) {
-            this.dialCode = dialCode;
-        },
     },
 };
 </script>

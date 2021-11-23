@@ -270,16 +270,20 @@
                 >Privacy Policy</router-link
             >
         </p>
-        <klump-checkout-button> Pay NGN 161,807.5 </klump-checkout-button>
+        <span @click="gotoNextModal(false, {}, 'successfulTransactionModal')">
+            <klump-checkout-button> Pay NGN 161,807.5 </klump-checkout-button>
+        </span>
     </klump-checkout-container>
 </template>
 
 <script>
 import KlumpCheckoutContainer from '@/components/KlumpCheckoutContainer';
 import KlumpCheckoutButton from '@/components/KlumpCheckoutButton';
+import gotoNextModalMixin from '../../mixins/gotoNextModal';
 
 export default {
     name: 'Pay',
+    mixins: [gotoNextModalMixin],
     components: {
         KlumpCheckoutContainer,
         KlumpCheckoutButton,
