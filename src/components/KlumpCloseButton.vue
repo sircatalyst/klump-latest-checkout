@@ -1,7 +1,7 @@
 <template @click="close">
     <div>
         <svg
-            class="absolute top-2 -right-4 cursor-pointer"
+            class="absolute top-2 -right-2 xl:-right-4 cursor-pointer"
             xmlns="http://www.w3.org/2000/svg"
             width="15"
             height="15"
@@ -22,7 +22,7 @@ export default {
     methods: {
         close() {
             this.data = true;
-        }
-    }
+        },
+    },
 };
 </script>
