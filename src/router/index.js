@@ -28,6 +28,10 @@ const CompleteYourAccount = () =>
     import(
         /* webpackChunkName: 'CompleteYourAccount' */ '../forms/onboarding/CompleteYourAccount'
     );
+const DocumentVerification = () =>
+    import(
+        /* webpackChunkName: 'DocumentVerification' */ '../forms/onboarding/DocumentVerification'
+    );
 const ConnectYourBank = () =>
     import(
         /* webpackChunkName: 'ConnectYourBank' */ '../forms/profiling/ConnectYourBank'
@@ -128,6 +132,11 @@ const routes = [
         path: '/pay',
         name: 'pay',
         component: Pay,
+    },
+    {
+        path: '/document-verification',
+        name: 'documentverification',
+        component: DocumentVerification,
     },
 ];
 

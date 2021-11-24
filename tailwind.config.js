@@ -11,16 +11,22 @@ module.exports = {
                 'light-blue': '#4062D1',
                 tertiary: '#4CAF50',
                 secondary: '#171717',
+                document: '#212121',
                 divider: '#F4F4F4',
             },
             borderWidth: {
+                xxs: '0.5px',
                 xs: '0.883721px',
                 sm: '1.5px',
             },
+            borderRadius: {
+                5: '5px',
+            },
             lineHeight: {
-                30: '30px',
-                25: '25px',
+                18: '18px',
                 22: '22px',
+                25: '25px',
+                30: '30px',
             },
             width: {
                 sm: '48.85%',
