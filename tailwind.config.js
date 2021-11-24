@@ -13,6 +13,7 @@ module.exports = {
                 secondary: '#171717',
                 document: '#212121',
                 divider: '#F4F4F4',
+                'doc-bg': '#F7F9FF',
             },
             borderWidth: {
                 xxs: '0.5px',
@@ -20,9 +21,12 @@ module.exports = {
                 sm: '1.5px',
             },
             borderRadius: {
+                3: '3px',
                 5: '5px',
+                10: '10px',
             },
             lineHeight: {
+                15: '15px',
                 18: '18px',
                 22: '22px',
                 25: '25px',
