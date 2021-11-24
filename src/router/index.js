@@ -28,6 +28,10 @@ const CompleteYourAccount = () =>
     import(
         /* webpackChunkName: 'CompleteYourAccount' */ '../forms/onboarding/CompleteYourAccount'
     );
+const DocumentVerification = () =>
+    import(
+        /* webpackChunkName: 'DocumentVerification' */ '../forms/onboarding/DocumentVerification'
+    );
 const ConnectYourBank = () =>
     import(
         /* webpackChunkName: 'ConnectYourBank' */ '../forms/profiling/ConnectYourBank'
@@ -48,10 +52,8 @@ const FourInterestFreeInstallment = () =>
     );
 const Pay = () =>
     import(/* webpackChunkName: 'Pay' */ '../forms/returning_user/Pay');
-const Home = () =>
-    import(/* webpackChunkName: 'Pay' */ '../pages/Home');
-const Login = () =>
-    import(/* webpackChunkName: 'Pay' */ '../pages/Login');
+const Home = () => import(/* webpackChunkName: 'Pay' */ '../pages/Home');
+const Login = () => import(/* webpackChunkName: 'Pay' */ '../pages/Login');
 
 Vue.use(VueRouter);
 
@@ -130,6 +132,11 @@ const routes = [
         path: '/pay',
         name: 'pay',
         component: Pay,
+    },
+    {
+        path: '/document-verification',
+        name: 'documentverification',
+        component: DocumentVerification,
     },
 ];
 
