@@ -48,10 +48,8 @@ const FourInterestFreeInstallment = () =>
     );
 const Pay = () =>
     import(/* webpackChunkName: 'Pay' */ '../forms/returning_user/Pay');
-const Home = () =>
-    import(/* webpackChunkName: 'Pay' */ '../pages/Home');
-const Login = () =>
-    import(/* webpackChunkName: 'Pay' */ '../pages/Login');
+const Home = () => import(/* webpackChunkName: 'Pay' */ '../pages/Home');
+const Login = () => import(/* webpackChunkName: 'Pay' */ '../pages/Login');
 
 Vue.use(VueRouter);
 
@@ -122,7 +120,7 @@ const routes = [
         component: SuccessfulTransaction,
     },
     {
-        path: '/4-insterest-free-installment',
+        path: '/4-interest-free-installment',
         name: '4interestfreeinstallment',
         component: FourInterestFreeInstallment,
     },
