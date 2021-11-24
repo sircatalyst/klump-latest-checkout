@@ -58,15 +58,7 @@
                         </button>
                         <input
                             type="file"
-                            class="
-                                absolute
-                                w-10/12
-                                top-0
-                                opacity-0
-                                py-2
-                                bg-green-600
-                                left-4
-                            "
+                            class="absolute w-10/12 top-0 opacity-0 py-2 left-4"
                             name=""
                             id=""
                         />
