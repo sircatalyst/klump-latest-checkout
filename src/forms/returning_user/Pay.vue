@@ -1,18 +1,19 @@
 <template>
     <klump-checkout-container>
         <template v-slot:header>
-            4 interest-free installment charged on your card every 2 weeks
+            4 installment charged on your card over 3 months
         </template>
         <div class="responsive-height my-5 container">
             <ul class="font-bold flex flex-col space-y-10 relative">
                 <div class="flex justify-between">
                     <div class="relative">
                         <li class="bullet">
-                            <div class="inline-flex flex-col space-y-3">
+                            <div class="inline-flex flex-col xl:space-y-2">
                                 <p
                                     class="
                                         inline
-                                        text-lg
+                                        text-base
+                                        xl:text-lg
                                         leading-25
                                         font-extrabold
                                         text-tertiary
@@ -22,7 +23,8 @@
                                 </p>
                                 <p
                                     class="
-                                        text-base
+                                        text-sm
+                                        xl:text-base
                                         leading-22
                                         text-primary-grey
                                     "
@@ -33,18 +35,27 @@
                         </li>
                         <div class="vertical"></div>
                     </div>
-                    <p class="text-lg leading-25 font-extrabold text-tertiary">
+                    <p
+                        class="
+                            text-base
+                            xl:text-lg
+                            leading-25
+                            font-extrabold
+                            text-tertiary
+                        "
+                    >
                         NGN161,807.5
                     </p>
                 </div>
                 <div class="flex justify-between">
                     <div class="relative">
                         <li class="bullet-grey">
-                            <div class="inline-flex flex-col space-y-3">
+                            <div class="inline-flex flex-col xl:space-y-2">
                                 <p
                                     class="
                                         inline
-                                        text-lg
+                                        text-base
+                                        xl:text-lg
                                         leading-25
                                         font-extrabold
                                         text-primary
@@ -54,81 +65,113 @@
                                 </p>
                                 <p
                                     class="
-                                        text-base
+                                        text-sm
+                                        xl:text-base
                                         leading-22
                                         text-primary-grey
                                     "
                                 >
-                                    Paid automatically 2 weeks later
+                                    Paid automatically<br class="xl:hidden" />
+                                    1 month later
                                 </p>
                             </div>
                         </li>
                         <div class="vertical"></div>
                     </div>
-                    <p class="text-lg leading-25 font-extrabold text-primary">
+                    <p
+                        class="
+                            text-base
+                            xl:text-lg
+                            leading-25
+                            font-extrabold
+                            text-primary
+                        "
+                    >
                         NGN161,807.5
                     </p>
                 </div>
                 <div class="flex justify-between">
                     <div class="relative">
                         <li class="bullet-grey">
-                            <div class="inline-flex flex-col space-y-3">
+                            <div class="inline-flex flex-col xl:space-y-2">
                                 <p
                                     class="
                                         inline
-                                        text-lg
+                                        text-base
+                                        xl:text-lg
                                         leading-25
                                         font-extrabold
                                         text-primary
                                     "
                                 >
-                                    Due: Aug 19, 2021
+                                    Due: Sept 5, 2021
                                 </p>
                                 <p
                                     class="
-                                        text-base
+                                        text-sm
+                                        xl:text-base
                                         leading-22
                                         text-primary-grey
                                     "
                                 >
-                                    Paid automatically 4 weeks later
+                                    Paid automatically<br class="xl:hidden" />
+                                    2 months later
                                 </p>
                             </div>
                         </li>
                         <div class="vertical"></div>
                     </div>
-                    <p class="text-lg leading-25 font-extrabold text-primary">
+                    <p
+                        class="
+                            text-base
+                            xl:text-lg
+                            leading-25
+                            font-extrabold
+                            text-primary
+                        "
+                    >
                         NGN161,807.5
                     </p>
                 </div>
                 <div class="flex justify-between">
                     <div class="relative">
                         <li class="bullet-grey">
-                            <div class="inline-flex flex-col space-y-3">
+                            <div class="inline-flex flex-col xl:space-y-2">
                                 <p
                                     class="
                                         inline
-                                        text-lg
+                                        text-base
+                                        xl:text-lg
                                         leading-25
                                         font-extrabold
                                         text-primary
                                     "
                                 >
-                                    Due: Sept 2, 2021
+                                    Due: Oct 5, 2021
                                 </p>
                                 <p
                                     class="
-                                        text-base
+                                        text-sm
+                                        xl:text-base
                                         leading-22
                                         text-primary-grey
                                     "
                                 >
-                                    Final payment, 6 weeks later
+                                    Final payment,<br class="xl:hidden" />
+                                    3 months later
                                 </p>
                             </div>
                         </li>
                     </div>
-                    <p class="text-lg leading-25 font-extrabold text-primary">
+                    <p
+                        class="
+                            text-base
+                            xl:text-lg
+                            leading-25
+                            font-extrabold
+                            text-primary
+                        "
+                    >
                         NGN161,807.5
                     </p>
                 </div>
@@ -298,7 +341,7 @@ export default {
     background-size: 12px 12px;
     height: 12px;
     width: 12px;
-    margin-right: 15px;
+    margin-right: 8px;
 }
 .bullet-grey::before {
     display: inline-block;
@@ -307,11 +350,11 @@ export default {
     background-size: 12px 12px;
     height: 12px;
     width: 12px;
-    margin-right: 15px;
+    margin-right: 8px;
 }
 .vertical {
     border-left: 2.5px solid #e6e6e6;
-    height: 88px;
+    height: 99px;
     position: absolute;
     left: 5px;
     top: 18px;
@@ -320,15 +363,79 @@ export default {
     display: none;
 }
 
+@media (min-width: 1280px) {
+    .bullet::before {
+        display: inline-block;
+        content: ' ';
+        background-image: url('../../assets/icons/bullet-tertiary.svg');
+        background-size: 12px 12px;
+        height: 12px;
+        width: 12px;
+        margin-right: 15px;
+    }
+    .bullet-grey::before {
+        display: inline-block;
+        content: ' ';
+        background-image: url('../../assets/icons/bullet-grey.svg');
+        background-size: 12px 12px;
+        height: 12px;
+        width: 12px;
+        margin-right: 15px;
+    }
+    .vertical {
+        border-left: 2.5px solid #e6e6e6;
+        height: 88px;
+        position: absolute;
+        left: 5px;
+        top: 20px;
+    }
+}
+
 @media (min-height: 400px) and (min-width: 1366px) {
     .responsive-height {
         height: 140px;
         overflow-y: auto;
     }
+    .bullet::before {
+        display: inline-block;
+        content: ' ';
+        background-image: url('../../assets/icons/bullet-tertiary.svg');
+        background-size: 12px 12px;
+        height: 12px;
+        width: 12px;
+        margin-right: 5px;
+    }
+    .bullet-grey::before {
+        display: inline-block;
+        content: ' ';
+        background-image: url('../../assets/icons/bullet-grey.svg');
+        background-size: 12px 12px;
+        height: 12px;
+        width: 12px;
+        margin-right: 5px;
+    }
 }
 @media (min-height: 700px) and (min-width: 1366px) {
     .responsive-height {
         height: auto;
+    }
+    .bullet::before {
+        display: inline-block;
+        content: ' ';
+        background-image: url('../../assets/icons/bullet-tertiary.svg');
+        background-size: 12px 12px;
+        height: 12px;
+        width: 12px;
+        margin-right: 15px;
+    }
+    .bullet-grey::before {
+        display: inline-block;
+        content: ' ';
+        background-image: url('../../assets/icons/bullet-grey.svg');
+        background-size: 12px 12px;
+        height: 12px;
+        width: 12px;
+        margin-right: 15px;
     }
 }
 </style>
