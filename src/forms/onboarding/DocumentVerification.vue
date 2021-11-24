@@ -77,7 +77,7 @@ import KlumpCheckoutContainer from '@/components/KlumpCheckoutContainer.vue';
 import gotoNextModalMixin from '../../mixins/gotoNextModal';
 
 export default {
-    name: 'EnterTheCode',
+    name: 'DocumentVerification',
     mixins: [gotoNextModalMixin],
     components: {
         KlumpCheckoutContainer,
