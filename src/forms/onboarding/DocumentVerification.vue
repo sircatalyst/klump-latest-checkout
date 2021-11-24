@@ -31,30 +31,6 @@
             <div class="border-xxs border-input rounded-5 p-3">
                 <div class="flex items-center space-x-4">
                     <img
-                        src="../../assets/images/nin_slip.png"
-                        height="30"
-                        width="47.56"
-                    />
-                    <p class="text-document text-base leading-18">
-                        Nimc Enrollment Slip
-                    </p>
-                </div>
-            </div>
-            <div class="border-xxs border-input rounded-5 p-3">
-                <div class="flex items-center space-x-4">
-                    <img
-                        src="../../assets/images/voters_card.png"
-                        height="30"
-                        width="47.56"
-                    />
-                    <p class="text-document text-base leading-18">
-                        Voter’s Card
-                    </p>
-                </div>
-            </div>
-            <div class="border-xxs border-input rounded-5 p-3">
-                <div class="flex items-center space-x-4">
-                    <img
                         src="../../assets/images/drivers_license.png"
                         height="30"
                         width="47.56"
