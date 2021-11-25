@@ -36,7 +36,12 @@
             </ValidationProvider>
             <ValidationProvider rules="required|terms-checked" tag="div">
                 <div class="flex my-5">
-                    <input type="checkbox" v-model="loginPayload.terms" name="" id="" />
+                    <input
+                        type="checkbox"
+                        v-model="loginPayload.terms"
+                        name=""
+                        id=""
+                    />
                     <span class="inline-block ml-3 text-xs leading-5"
                         >I agree to the
                         <router-link to="" class="font-bold underline"
@@ -55,6 +60,12 @@
                 >
             </span>
         </ValidationObserver>
+        <p class="text-lg leading-25 text-secondary text-center mt-6">
+            Don't have an account?
+            <router-link to="#" class="text-light-blue cursor-pointer"
+                >Sign up</router-link
+            >
+        </p>
     </klump-checkout-container>
 </template>
 
