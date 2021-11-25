@@ -36,6 +36,10 @@ const DocumentVerificationEmpty = () =>
     import(
         /* webpackChunkName: 'DocumentVerificationEmpty' */ '../forms/onboarding/DocumentVerificationEmpty'
     );
+const DocumentVerificationWithDocument = () =>
+    import(
+        /* webpackChunkName: 'DocumentVerificationWithDocument' */ '../forms/onboarding/DocumentVerificationWithDocument'
+    );
 const ConnectYourBank = () =>
     import(
         /* webpackChunkName: 'ConnectYourBank' */ '../forms/profiling/ConnectYourBank'
@@ -146,6 +150,11 @@ const routes = [
         path: '/document-verification-empty',
         name: 'documentverificationempty',
         component: DocumentVerificationEmpty,
+    },
+    {
+        path: '/document-verification-with-document',
+        name: 'documentverificationwithdocument',
+        component: DocumentVerificationWithDocument,
     },
 ];
 
