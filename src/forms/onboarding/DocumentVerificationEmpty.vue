@@ -66,7 +66,7 @@
                 </div>
             </div>
         </div>
-        <span>
+        <span @click="gotoNextModal(false, {}, 'whatsYourBvnModal')">
             <klump-checkout-button>Continue</klump-checkout-button>
         </span>
     </klump-checkout-container>

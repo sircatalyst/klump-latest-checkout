@@ -191,16 +191,20 @@
                 >Privacy Policy</router-link
             >
         </p>
-        <klump-checkout-button> Continue </klump-checkout-button>
+        <span @click="gotoNextModal(false, {}, 'successfulTransactionModal')">
+            <klump-checkout-button> Continue </klump-checkout-button>
+        </span>
     </klump-checkout-container>
 </template>
 
 <script>
 import KlumpCheckoutContainer from '@/components/KlumpCheckoutContainer';
 import KlumpCheckoutButton from '@/components/KlumpCheckoutButton';
+import gotoNextModalMixin from '../../mixins/gotoNextModal';
 
 export default {
     name: 'FourInterestFreeInstallment',
+    mixins: [gotoNextModalMixin],
     components: {
         KlumpCheckoutContainer,
         KlumpCheckoutButton,
