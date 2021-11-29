@@ -6,7 +6,8 @@
 		<whats-your-email v-show="showWhatsYourEmailModal" @gotoNextModal="handleGotoNextModal" />
 		<choose-a-password v-show="showChooseAPasswordModal" @gotoNextModal="handleGotoNextModal" />
 		<complete-your-account v-show="showCompleteYourAccountModal" @gotoNextModal="handleGotoNextModal" />
-		<document-verification-empty v-show="showDocumentVerificationModal" @gotoNextModal="handleGotoNextModal" />
+		<choose-identification v-show="showChooseIdentificationModal" @gotoNextModal="handleGotoNextModal" />
+		<passport-verification v-show="showPassportVerificationModal" @gotoNextModal="handleGotoNextModal" />
 		<whats-your-bvn v-show="showWhatsYourBvnModal" @gotoNextModal="handleGotoNextModal" />
 		<connect-your-bank v-show="showConnectYourBankModal" @gotoNextModal="handleGotoNextModal" />
 		<complete-checkout v-show="showCompleteCheckoutModal" @gotoNextModal="handleGotoNextModal" />
@@ -22,7 +23,8 @@ import EnterTheCode from '@/forms/onboarding/EnterTheCode';
 import WhatsYourEmail from '@/forms/onboarding/WhatsYourEmail';
 import ChooseAPassword from '@/forms/onboarding/ChooseAPassword';
 import CompleteYourAccount from '@/forms/onboarding/CompleteYourAccount';
-import DocumentVerificationEmpty from '@/forms/onboarding/DocumentVerificationEmpty';
+import ChooseIdentification from '@/forms/onboarding/ChooseIdentification';
+import PassportVerification from '@/forms/onboarding/PassportVerification';
 import WhatsYourBvn from '@/forms/onboarding/WhatsYourBvn';
 import ConnectYourBank from '@/forms/profiling/ConnectYourBank';
 import CompleteCheckout from '@/forms/profiling/CompleteCheckout';
@@ -38,7 +40,8 @@ export default {
 		WhatsYourEmail,
 		ChooseAPassword,
 		CompleteYourAccount,
-		DocumentVerificationEmpty,
+		ChooseIdentification,		
+		PassportVerification,
 		WhatsYourBvn,
 		ConnectYourBank,
 		CompleteCheckout,
@@ -56,7 +59,8 @@ export default {
 			showWhatsYourBvnModal: false,
 			showConnectYourBankModal: false,
 			showCompleteCheckoutModal: false,
-			showDocumentVerificationModal: false,
+			showChooseIdentificationModal: false,
+			showPassportVerificationModal: false,
 			showFourInterestFreeInstallmentModal: false,
 			showSuccessfulTransactionModal: false,
 			payload: {}
@@ -64,7 +68,6 @@ export default {
 	},
 	methods: {
 		handleGotoNextModal(param) {
-				console.log('param', param)
 			switch (param.next) {
                 case 'verifyYourDetailsModal':
 					this.showFourEasyPaymentsModal = false;
@@ -90,15 +93,19 @@ export default {
 					this.showChooseAPasswordModal = false;
 					this.showCompleteYourAccountModal = true;
                     break;
-                case 'documentVerificationModal':
-					console.log('documentVerificationModal')
+                case 'chooseIdentificationModal':
 					this.payload = { ...param.payload, ...this.payload };
 					this.showCompleteYourAccountModal = false;
-					this.showDocumentVerificationModal = true;
+					this.showChooseIdentificationModal = true;
+                    break;
+                case 'passportVerificationModal':
+					this.payload = { ...param.payload, ...this.payload };
+					this.showChooseIdentificationModal = false;
+					this.showPassportVerificationModal = true;
                     break;
                 case 'whatsYourBvnModal':
 					this.payload = { ...param.payload, ...this.payload };
-					this.showDocumentVerificationModal = false;
+					this.showPassportVerificationModal = false;
 					this.showWhatsYourBvnModal = true;
                     break;
                 case 'connectYourBankModal':
