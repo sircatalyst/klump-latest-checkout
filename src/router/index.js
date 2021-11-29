@@ -28,17 +28,13 @@ const CompleteYourAccount = () =>
     import(
         /* webpackChunkName: 'CompleteYourAccount' */ '../forms/onboarding/CompleteYourAccount'
     );
-const DocumentVerification = () =>
+const ChoosePassport = () =>
     import(
-        /* webpackChunkName: 'DocumentVerification' */ '../forms/onboarding/DocumentVerification'
+        /* webpackChunkName: 'ChoosePassport' */ '../forms/onboarding/ChoosePassport'
     );
-const DocumentVerificationEmpty = () =>
+const PassportVerification = () =>
     import(
-        /* webpackChunkName: 'DocumentVerificationEmpty' */ '../forms/onboarding/DocumentVerificationEmpty'
-    );
-const DocumentVerificationWithDocument = () =>
-    import(
-        /* webpackChunkName: 'DocumentVerificationWithDocument' */ '../forms/onboarding/DocumentVerificationWithDocument'
+        /* webpackChunkName: 'PassportVerification' */ '../forms/onboarding/PassportVerification'
     );
 const ConnectYourBank = () =>
     import(
@@ -142,19 +138,14 @@ const routes = [
         component: Pay,
     },
     {
-        path: '/document-verification',
-        name: 'documentverification',
-        component: DocumentVerification,
+        path: '/choose-passport',
+        name: 'choosepassport',
+        component: ChoosePassport,
     },
     {
-        path: '/document-verification-empty',
-        name: 'documentverificationempty',
-        component: DocumentVerificationEmpty,
-    },
-    {
-        path: '/document-verification-with-document',
-        name: 'documentverificationwithdocument',
-        component: DocumentVerificationWithDocument,
+        path: '/passport-verification',
+        name: 'passportverification',
+        component: PassportVerification,
     },
 ];
 

@@ -49,7 +49,7 @@ import KlumpCheckoutContainer from '@/components/KlumpCheckoutContainer.vue';
 import gotoNextModalMixin from '../../mixins/gotoNextModal';
 
 export default {
-    name: 'DocumentVerification',
+    name: 'ChoosePassport',
     mixins: [gotoNextModalMixin],
     components: {
         KlumpCheckoutContainer,
