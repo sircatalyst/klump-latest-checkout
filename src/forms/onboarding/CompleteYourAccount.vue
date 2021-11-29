@@ -173,7 +173,7 @@
                     >
                 </div>
             </ValidationProvider>
-            <span @click="gotoNextModal(invalid, { ...form }, 'whatsYourBvnModal')">
+            <span @click="gotoNextModal(invalid, { ...form }, 'chooseIdentificationModal')">
                 <klump-checkout-button :disabled="invalid"
                     >Continue</klump-checkout-button
                 >

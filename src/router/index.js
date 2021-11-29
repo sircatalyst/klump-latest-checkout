@@ -28,9 +28,9 @@ const CompleteYourAccount = () =>
     import(
         /* webpackChunkName: 'CompleteYourAccount' */ '../forms/onboarding/CompleteYourAccount'
     );
-const ChoosePassport = () =>
+const ChooseIdentification = () =>
     import(
-        /* webpackChunkName: 'ChoosePassport' */ '../forms/onboarding/ChoosePassport'
+        /* webpackChunkName: 'ChooseIdentification' */ '../forms/onboarding/ChooseIdentification'
     );
 const PassportVerification = () =>
     import(
@@ -138,9 +138,9 @@ const routes = [
         component: Pay,
     },
     {
-        path: '/choose-passport',
-        name: 'choosepassport',
-        component: ChoosePassport,
+        path: '/choose-identification',
+        name: 'chooseidentification',
+        component: ChooseIdentification,
     },
     {
         path: '/passport-verification',

@@ -23,16 +23,20 @@
         <h1 class="hero-text bolded text-center text-2xl mb-7 text-primary">
             NGN 910,365.57
         </h1>
-        <klump-checkout-button>Complete checkout</klump-checkout-button>
+        <span @click="gotoNextModal(false, {}, 'fourInterestFreeInstallmentModal')">
+            <klump-checkout-button>Complete checkout</klump-checkout-button>
+        </span>
     </klump-checkout-container>
 </template>
 
 <script>
 import KlumpCheckoutButton from '@/components/KlumpCheckoutButton';
 import KlumpCheckoutContainer from '@/components/KlumpCheckoutContainer';
+import gotoNextModalMixin from '../../mixins/gotoNextModal';
 
 export default {
     name: 'CompleteCheckout',
+    mixins: [gotoNextModalMixin],
     components: {
         KlumpCheckoutButton,
         KlumpCheckoutContainer,

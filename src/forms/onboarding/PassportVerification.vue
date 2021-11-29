@@ -146,7 +146,7 @@
                         </div>
                     </div>
                 </div>
-                <span>
+                <span @click="gotoNextModal(false, {}, 'whatsYourBvnModal')">
                     <klump-checkout-button :disabled="invalid"
                         >Continue</klump-checkout-button
                     >
