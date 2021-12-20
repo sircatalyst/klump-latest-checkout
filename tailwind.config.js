@@ -36,8 +36,14 @@ module.exports = {
             width: {
                 sm: '48.85%',
             },
+            height: {
+                input: '57.5px',
+            },
             margin: {
                 xs: '0.8px',
+            },
+            inset: {
+                label: '17.5px',
             },
         },
     },
