@@ -1,5 +1,5 @@
 import { extend } from 'vee-validate';
-import { required, email } from 'vee-validate/dist/rules';
+import { required, email, image } from 'vee-validate/dist/rules';
 
 extend('required', {
     ...required,
@@ -21,6 +21,11 @@ extend('password-valid', (value) => {
     const passwordRegex =
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{7,}$/;
     return passwordRegex.test(value);
+});
+
+extend('image', {
+    ...image,
+    message: '{_field_} must be an image',
 });
 
 extend('bvn-valid', (value) => {

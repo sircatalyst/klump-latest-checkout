@@ -187,7 +187,11 @@
                 </ValidationProvider>
                 <span
                     @click="
-                        gotoNextModal(invalid, { ...form }, 'whatsYourBvnModal')
+                        gotoNextModal(
+                            invalid,
+                            { ...form },
+                            'chooseIdentificationModal'
+                        )
                     "
                 >
                     <klump-checkout-button :disabled="invalid"

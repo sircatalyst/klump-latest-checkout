@@ -6,9 +6,13 @@
 		<whats-your-email v-show="showWhatsYourEmailModal" @gotoNextModal="handleGotoNextModal" />
 		<choose-a-password v-show="showChooseAPasswordModal" @gotoNextModal="handleGotoNextModal" />
 		<complete-your-account v-show="showCompleteYourAccountModal" @gotoNextModal="handleGotoNextModal" />
+		<choose-identification v-show="showChooseIdentificationModal" @gotoNextModal="handleGotoNextModal" />
+		<passport-verification v-show="showPassportVerificationModal" @gotoNextModal="handleGotoNextModal" />
 		<whats-your-bvn v-show="showWhatsYourBvnModal" @gotoNextModal="handleGotoNextModal" />
 		<connect-your-bank v-show="showConnectYourBankModal" @gotoNextModal="handleGotoNextModal" />
 		<complete-checkout v-show="showCompleteCheckoutModal" @gotoNextModal="handleGotoNextModal" />
+		<four-interest-free-installment v-show="showFourInterestFreeInstallmentModal" @gotoNextModal="handleGotoNextModal" />
+		<successful-transaction v-show="showSuccessfulTransactionModal" @gotoNextModal="handleGotoNextModal" />
 	</div>
 </template>
 
@@ -19,9 +23,13 @@ import EnterTheCode from '@/forms/onboarding/EnterTheCode';
 import WhatsYourEmail from '@/forms/onboarding/WhatsYourEmail';
 import ChooseAPassword from '@/forms/onboarding/ChooseAPassword';
 import CompleteYourAccount from '@/forms/onboarding/CompleteYourAccount';
+import ChooseIdentification from '@/forms/onboarding/ChooseIdentification';
+import PassportVerification from '@/forms/onboarding/PassportVerification';
 import WhatsYourBvn from '@/forms/onboarding/WhatsYourBvn';
 import ConnectYourBank from '@/forms/profiling/ConnectYourBank';
 import CompleteCheckout from '@/forms/profiling/CompleteCheckout';
+import FourInterestFreeInstallment from '@/forms/checkout/FourInterestFreeInstallment';
+import SuccessfulTransaction from '@/forms/returning_user/SuccessfulTransaction';
 
 export default {
     name: 'Home',
@@ -32,9 +40,13 @@ export default {
 		WhatsYourEmail,
 		ChooseAPassword,
 		CompleteYourAccount,
+		ChooseIdentification,		
+		PassportVerification,
 		WhatsYourBvn,
 		ConnectYourBank,
-		CompleteCheckout
+		CompleteCheckout,
+		FourInterestFreeInstallment,
+		SuccessfulTransaction
 	},
 	data() {
 		return {
@@ -47,6 +59,10 @@ export default {
 			showWhatsYourBvnModal: false,
 			showConnectYourBankModal: false,
 			showCompleteCheckoutModal: false,
+			showChooseIdentificationModal: false,
+			showPassportVerificationModal: false,
+			showFourInterestFreeInstallmentModal: false,
+			showSuccessfulTransactionModal: false,
 			payload: {}
 		}
 	},
@@ -77,9 +93,19 @@ export default {
 					this.showChooseAPasswordModal = false;
 					this.showCompleteYourAccountModal = true;
                     break;
-                case 'whatsYourBvnModal':
+                case 'chooseIdentificationModal':
 					this.payload = { ...param.payload, ...this.payload };
 					this.showCompleteYourAccountModal = false;
+					this.showChooseIdentificationModal = true;
+                    break;
+                case 'passportVerificationModal':
+					this.payload = { ...param.payload, ...this.payload };
+					this.showChooseIdentificationModal = false;
+					this.showPassportVerificationModal = true;
+                    break;
+                case 'whatsYourBvnModal':
+					this.payload = { ...param.payload, ...this.payload };
+					this.showPassportVerificationModal = false;
 					this.showWhatsYourBvnModal = true;
                     break;
                 case 'connectYourBankModal':
@@ -91,6 +117,16 @@ export default {
 					this.payload = { ...param.payload, ...this.payload };
 					this.showConnectYourBankModal = false;
 					this.showCompleteCheckoutModal = true;
+                    break;
+                case 'fourInterestFreeInstallmentModal':
+					this.payload = { ...param.payload, ...this.payload };
+					this.showCompleteCheckoutModal = false;
+					this.showFourInterestFreeInstallmentModal = true;
+                    break;
+                case 'successfulTransactionModal':
+					this.payload = { ...param.payload, ...this.payload };
+					this.showFourInterestFreeInstallmentModal = false;
+					this.showSuccessfulTransactionModal = true;
                     break;
 				default:
 				this.showFourEasyPaymentsModal = true;

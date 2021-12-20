@@ -21,6 +21,12 @@
         <span @click="gotoNextModal(false, {}, 'verifyYourDetailsModal')">
             <klump-checkout-button>Continue</klump-checkout-button>
         </span>
+        <p class="text-lg leading-25 text-secondary text-center mt-6">
+            Already have an account?
+            <router-link to="#" class="text-light-blue cursor-pointer"
+                >Sign in</router-link
+            >
+        </p>
     </klump-checkout-container>
 </template>
 
