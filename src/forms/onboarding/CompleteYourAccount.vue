@@ -2,103 +2,19 @@
     <klump-checkout-container>
         <template v-slot:header> Complete your account</template>
         <ValidationObserver v-slot="{ invalid }">
-            <div class="responsive-height container">
-                <p class="mb-6 leading-30">
-                    Please share your <strong>billing details.</strong> We’ll
-                    only ask you for this information once and you can easily
-                    update it in the Klump app later.
-                </p>
-                <div class="flex items-center justify-between mb-3">
-                    <div class="w-sm">
-                        <ValidationProvider
-                            rules="required"
-                            v-slot="{ errors }"
-                            tag="div"
-                        >
-                            <klump-checkout-input
-                                v-model="form.firstname"
-                                :customClass="'rounded'"
-                                :inputProp="{
-                                    type: 'text',
-                                    ref: 'firstname',
-                                }"
-                                :errorMessages="errors"
-                            >
-                                First Name
-                            </klump-checkout-input>
-                        </ValidationProvider>
-                    </div>
-                    <div class="w-sm">
-                        <ValidationProvider
-                            rules="required"
-                            v-slot="{ errors }"
-                            tag="div"
-                        >
-                            <klump-checkout-input
-                                v-model="form.lastname"
-                                :customClass="'rounded'"
-                                :inputProp="{
-                                    type: 'text',
-                                    ref: 'lastname',
-                                }"
-                                :errorMessages="errors"
-                            >
-                                Last Name
-                            </klump-checkout-input>
-                        </ValidationProvider>
-                    </div>
-                </div>
-                <ValidationProvider
-                    rules="required"
-                    v-slot="{ errors }"
-                    tag="div"
-                >
-                    <klump-checkout-input
-                        v-model="form.dob"
-                        :customClass="'rounded'"
-                        :inputProp="{
-                            type: 'date',
-                            ref: 'dob',
-                        }"
-                        :errorMessages="errors"
-                    >
-                    </klump-checkout-input>
-                </ValidationProvider>
-                <div class="my-3">
-                    <ValidationProvider
-                        rules="required"
-                        v-slot="{ errors }"
-                        tag="div"
-                    >
-                        <klump-checkout-input
-                            v-model="form.address"
-                            :customClass="'rounded mb-3'"
-                            :inputProp="{
-                                type: 'text',
-                                ref: 'address',
-                            }"
-                            :errorMessages="errors"
-                        >
-                            Address
-                        </klump-checkout-input>
-                    </ValidationProvider>
-                    <ValidationProvider
-                        rules="required"
-                        v-slot="{ errors }"
-                        tag="div"
-                    >
-                        <klump-checkout-input
-                            v-model="form.apartment"
-                            :customClass="'rounded mb-3'"
-                            :inputProp="{
-                                type: 'text',
-                                ref: 'apartment',
-                            }"
-                            :errorMessages="errors"
-                        >
-                            Apartment, suite, etc. (optional)
-                        </klump-checkout-input>
-                    </ValidationProvider>
+            <form
+                @submit.prevent="
+                    gotoNextModal(invalid, { ...form }, 'whatsYourBvnModal')
+                "
+                autocomplete="off"
+            >
+                <div class="responsive-height container">
+                    <p class="mb-6 leading-30">
+                        Please share your
+                        <strong>billing details.</strong> We’ll only ask you for
+                        this information once and you can easily update it in
+                        the Klump app later.
+                    </p>
                     <div class="flex items-center justify-between mb-3">
                         <div class="w-sm">
                             <ValidationProvider
@@ -107,15 +23,15 @@
                                 tag="div"
                             >
                                 <klump-checkout-input
-                                    v-model="form.city"
+                                    v-model="form.firstname"
                                     :customClass="'rounded'"
                                     :inputProp="{
                                         type: 'text',
-                                        ref: 'city',
+                                        ref: 'firstname',
                                     }"
                                     :errorMessages="errors"
                                 >
-                                    City
+                                    First Name
                                 </klump-checkout-input>
                             </ValidationProvider>
                         </div>
@@ -126,15 +42,15 @@
                                 tag="div"
                             >
                                 <klump-checkout-input
-                                    v-model="form.state"
+                                    v-model="form.lastname"
                                     :customClass="'rounded'"
                                     :inputProp="{
                                         type: 'text',
-                                        ref: 'state',
+                                        ref: 'lastname',
                                     }"
                                     :errorMessages="errors"
                                 >
-                                    State
+                                    Last Name
                                 </klump-checkout-input>
                             </ValidationProvider>
                         </div>
@@ -145,39 +61,144 @@
                         tag="div"
                     >
                         <klump-checkout-input
-                            v-model="form.zipcode"
+                            v-model="form.dob"
                             :customClass="'rounded'"
                             :inputProp="{
-                                type: 'text',
-                                ref: 'zipcode',
+                                type: 'date',
+                                ref: 'dob',
                             }"
                             :errorMessages="errors"
                         >
-                            Zip code
                         </klump-checkout-input>
                     </ValidationProvider>
-                </div>
-            </div>
-            <ValidationProvider rules="required|terms-checked" tag="div">
-                <div class="flex my-5">
-                    <input type="checkbox" v-model="form.terms" name="" id="" />
-                    <span class="inline-block ml-3 text-xs leading-5"
-                        >I agree to the
-                        <router-link to="" class="font-bold underline"
-                            >Klump Shopping Service</router-link
+                    <div class="my-3">
+                        <ValidationProvider
+                            rules="required"
+                            v-slot="{ errors }"
+                            tag="div"
                         >
-                        (incl. electronic communications) and
-                        <router-link to="" class="font-bold underline"
-                            >Privacy Policy</router-link
-                        ></span
-                    >
+                            <klump-checkout-input
+                                v-model="form.address"
+                                :customClass="'rounded mb-3'"
+                                :inputProp="{
+                                    type: 'text',
+                                    ref: 'address',
+                                }"
+                                :errorMessages="errors"
+                            >
+                                Address
+                            </klump-checkout-input>
+                        </ValidationProvider>
+                        <ValidationProvider
+                            rules="required"
+                            v-slot="{ errors }"
+                            tag="div"
+                        >
+                            <klump-checkout-input
+                                v-model="form.apartment"
+                                :customClass="'rounded mb-3'"
+                                :inputProp="{
+                                    type: 'text',
+                                    ref: 'apartment',
+                                }"
+                                :errorMessages="errors"
+                            >
+                                Apartment, suite, etc. (optional)
+                            </klump-checkout-input>
+                        </ValidationProvider>
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="w-sm">
+                                <ValidationProvider
+                                    rules="required"
+                                    v-slot="{ errors }"
+                                    tag="div"
+                                >
+                                    <klump-checkout-input
+                                        v-model="form.city"
+                                        :customClass="'rounded'"
+                                        :inputProp="{
+                                            type: 'text',
+                                            ref: 'city',
+                                        }"
+                                        :errorMessages="errors"
+                                    >
+                                        City
+                                    </klump-checkout-input>
+                                </ValidationProvider>
+                            </div>
+                            <div class="w-sm">
+                                <ValidationProvider
+                                    rules="required"
+                                    v-slot="{ errors }"
+                                    tag="div"
+                                >
+                                    <klump-checkout-input
+                                        v-model="form.state"
+                                        :customClass="'rounded'"
+                                        :inputProp="{
+                                            type: 'text',
+                                            ref: 'state',
+                                        }"
+                                        :errorMessages="errors"
+                                    >
+                                        State
+                                    </klump-checkout-input>
+                                </ValidationProvider>
+                            </div>
+                        </div>
+                        <ValidationProvider
+                            rules="required"
+                            v-slot="{ errors }"
+                            tag="div"
+                        >
+                            <klump-checkout-input
+                                v-model="form.zipcode"
+                                :customClass="'rounded'"
+                                :inputProp="{
+                                    type: 'text',
+                                    ref: 'zipcode',
+                                }"
+                                :errorMessages="errors"
+                            >
+                                Zip code
+                            </klump-checkout-input>
+                        </ValidationProvider>
+                    </div>
                 </div>
-            </ValidationProvider>
-            <span @click="gotoNextModal(invalid, { ...form }, 'chooseIdentificationModal')">
-                <klump-checkout-button :disabled="invalid"
-                    >Continue</klump-checkout-button
+                <ValidationProvider rules="required|terms-checked" tag="div">
+                    <div class="flex my-5">
+                        <input
+                            type="checkbox"
+                            v-model="form.terms"
+                            name=""
+                            id=""
+                        />
+                        <span class="inline-block ml-3 text-xs leading-5"
+                            >I agree to the
+                            <router-link to="" class="font-bold underline"
+                                >Klump Shopping Service</router-link
+                            >
+                            (incl. electronic communications) and
+                            <router-link to="" class="font-bold underline"
+                                >Privacy Policy</router-link
+                            ></span
+                        >
+                    </div>
+                </ValidationProvider>
+                <span
+                    @click="
+                        gotoNextModal(
+                            invalid,
+                            { ...form },
+                            'chooseIdentificationModal'
+                        )
+                    "
                 >
-            </span>
+                    <klump-checkout-button :disabled="invalid"
+                        >Continue</klump-checkout-button
+                    >
+                </span>
+            </form>
         </ValidationObserver>
     </klump-checkout-container>
 </template>

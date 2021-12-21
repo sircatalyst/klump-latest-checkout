@@ -1,39 +1,48 @@
 <template>
     <div>
-        <div
-            v-if="inputProp.type !== 'date'"
-            @click="focusInput"
-            v-on-clickaway="removeFocus"
-            class="border-xs px-4 py-1 cursor-text relative"
-            :class="[
-                errorMessages[0] ? 'border-red-400' : inputActive,
-                customClass,
-            ]"
-        >
+        <div v-if="inputProp.type !== 'date'" class="relative">
             <label
+                style="left: 16px"
                 class="
+                    absolute
+                    z-10
                     text-primary-grey
                     transition-all
                     duration-350
                     ease-in-out
-                    mb-1
                     cursor-text
                 "
-                :class="active ? 'text-xs' : 'relative top-3'"
+                :class="active ? 'text-xs top-3' : 'top-label'"
                 :for="inputProp.ref"
+                @click="focusInput"
             >
                 <slot></slot>
             </label>
             <input
                 :type="inputProp.type"
-                name=""
                 :ref="inputProp.ref"
-                id=""
                 @focus="focusInput"
                 @blur="removeFocus"
                 @input="emitInputData"
                 v-model="inputData"
-                class="w-full text-sm outline-none font-bold"
+                class="
+                    w-full
+                    text-sm
+                    outline-none
+                    font-bold
+                    h-input
+                    border-xs
+                    px-4
+                    pb-1
+                    pt-5
+                    cursor-text
+                    relative
+                "
+                :class="[
+                    errorMessages[0] ? 'border-red-400' : inputActive,
+                    customClass,
+                ]"
+                autocomplete="new-password"
             />
         </div>
         <div
@@ -96,7 +105,6 @@
             <input
                 type="text"
                 placeholder="Date of birth"
-                name=""
                 :ref="inputProp.ref"
                 onfocus="(this.type='date')"
                 onfocusout="(this.type='text')"
@@ -105,6 +113,7 @@
                 @input="emitInputData"
                 v-model="inputData"
                 class="w-full py-3 text-sm outline-none"
+                autocomplete="new-password"
             />
         </div>
     </div>

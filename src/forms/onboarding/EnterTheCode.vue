@@ -6,42 +6,62 @@
             should get it within 20 seconds.
         </p>
         <ValidationObserver v-slot="{ invalid }">
-            <ValidationProvider rules="required" v-slot="{ errors }">
-                <klump-checkout-input
-                    v-model="payload.otp"
-                    :customClass="'rounded mb-6'"
-                    :inputProp="{
-                        type: 'tel',
-                        ref: 'otp',
-                    }"
-                    :errorMessages="errors"
-                >
-                    Enter the 6-digit code here
-                </klump-checkout-input>
-            </ValidationProvider>
-            <div class="mb-8">
-                <router-link :to="{ name: 'verifyyourdetails' }">
-                    <span class="block text-light-blue underline cursor-pointer"
-                        >Change phone number</span
+            <form
+                @submit.prevent="
+                    gotoNextModal(
+                        invalid,
+                        { otp: payload.otp },
+                        'whatsYourEmailModal'
+                    )
+                "
+                autocomplete="off"
+            >
+                <ValidationProvider rules="required" v-slot="{ errors }">
+                    <klump-checkout-input
+                        v-model="payload.otp"
+                        :customClass="'rounded mb-6'"
+                        :inputProp="{
+                            type: 'tel',
+                            ref: 'otp',
+                        }"
+                        :errorMessages="errors"
                     >
-                </router-link>
-            </div>
-            <p class="text-xs text-primary-grey my-5">
-                This site is protected by reCAPTCHA Enterprise and the Google
-                <router-link to="#" class="text-black underline"
-                    >Privacy Policy</router-link
+                        Enter the 6-digit code here
+                    </klump-checkout-input>
+                </ValidationProvider>
+                <div class="mb-8">
+                    <router-link :to="{ name: 'verifyyourdetails' }">
+                        <span class="text-light-blue underline cursor-pointer"
+                            >Change phone number</span
+                        >
+                    </router-link>
+                </div>
+                <p class="text-xs text-primary-grey my-5">
+                    This site is protected by reCAPTCHA Enterprise and the
+                    Google
+                    <router-link to="#" class="text-black underline"
+                        >Privacy Policy</router-link
+                    >
+                    and
+                    <router-link to="#" class="text-black underline"
+                        >Terms of Service</router-link
+                    >
+                    apply.
+                </p>
+                <span
+                    @click="
+                        gotoNextModal(
+                            invalid,
+                            { otp: payload.otp },
+                            'whatsYourEmailModal'
+                        )
+                    "
                 >
-                and
-                <router-link to="#" class="text-black underline"
-                    >Terms of Service</router-link
-                >
-                apply.
-            </p>
-            <span @click="gotoNextModal(invalid, { otp: payload.otp }, 'whatsYourEmailModal')">
-                <klump-checkout-button :disabled="invalid"
-                    >Continue</klump-checkout-button
-                >
-            </span>
+                    <klump-checkout-button :disabled="invalid"
+                        >Continue</klump-checkout-button
+                    >
+                </span>
+            </form>
         </ValidationObserver>
     </klump-checkout-container>
 </template>

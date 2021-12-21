@@ -5,35 +5,55 @@
             We'll use it to verify your account later.
         </p>
         <ValidationObserver v-slot="{ invalid }">
-            <ValidationProvider rules="email|required" v-slot="{ errors }">
-                <klump-checkout-input
-                    v-model="payload.email"
-                    :customClass="'rounded mb-6'"
-                    :inputProp="{
-                        type: 'email',
-                        ref: 'email',
-                    }"
-                    :errorMessages="errors"
+            <form
+                @submit.prevent="
+                    gotoNextModal(
+                        invalid,
+                        { email: payload.email },
+                        'chooseAPasswordModal'
+                    )
+                "
+                autocomplete="off"
+            >
+                <ValidationProvider rules="email|required" v-slot="{ errors }">
+                    <klump-checkout-input
+                        v-model="payload.email"
+                        :customClass="'rounded mb-6'"
+                        :inputProp="{
+                            type: 'email',
+                            ref: 'email',
+                        }"
+                        :errorMessages="errors"
+                    >
+                        Email
+                    </klump-checkout-input>
+                </ValidationProvider>
+                <p class="text-xs text-primary-grey my-5">
+                    This site is protected by reCAPTCHA Enterprise and the
+                    Google
+                    <router-link to="#" class="text-black underline"
+                        >Privacy Policy</router-link
+                    >
+                    and
+                    <router-link to="#" class="text-black underline"
+                        >Terms of Service</router-link
+                    >
+                    apply.
+                </p>
+                <span
+                    @click="
+                        gotoNextModal(
+                            invalid,
+                            { email: payload.email },
+                            'chooseAPasswordModal'
+                        )
+                    "
                 >
-                    Email
-                </klump-checkout-input>
-            </ValidationProvider>
-            <p class="text-xs text-primary-grey my-5">
-                This site is protected by reCAPTCHA Enterprise and the Google
-                <router-link to="#" class="text-black underline"
-                    >Privacy Policy</router-link
-                >
-                and
-                <router-link to="#" class="text-black underline"
-                    >Terms of Service</router-link
-                >
-                apply.
-            </p>
-            <span @click="gotoNextModal(invalid, { email: payload.email }, 'chooseAPasswordModal')">
-                <klump-checkout-button :disabled="invalid"
-                    >Continue</klump-checkout-button
-                >
-            </span>
+                    <klump-checkout-button :disabled="invalid"
+                        >Continue</klump-checkout-button
+                    >
+                </span>
+            </form>
         </ValidationObserver>
     </klump-checkout-container>
 </template>
@@ -55,6 +75,6 @@ export default {
         KlumpCheckoutButton,
         KlumpCheckoutContainer,
         KlumpCheckoutInput,
-    }
+    },
 };
 </script>

@@ -5,60 +5,65 @@
             Please enter your Klump email and password to check out
         </p>
         <ValidationObserver v-slot="{ invalid }">
-            <ValidationProvider rules="email|required" v-slot="{ errors }">
-                <klump-checkout-input
-                    v-model="email"
-                    :customClass="'rounded-tl-md rounded-tr-md'"
-                    :inputProp="{
-                        type: 'email',
-                        ref: 'email',
-                    }"
-                    :errorMessages="errors"
-                >
-                    Email
-                </klump-checkout-input>
-            </ValidationProvider>
-            <ValidationProvider
-                rules="password-valid|required"
-                v-slot="{ errors }"
+            <form
+                @submit.prevent="gotoNextModal(false, {}, 'payModal')"
+                autocomplete="off"
             >
-                <klump-checkout-input
-                    v-model="password"
-                    :customClass="'rounded-bl-md rounded-br-md'"
-                    :inputProp="{
-                        type: 'password',
-                        ref: 'password',
-                    }"
-                    :errorMessages="errors"
-                >
-                    Password
-                </klump-checkout-input>
-            </ValidationProvider>
-            <ValidationProvider rules="required|terms-checked" tag="div">
-                <div class="flex my-5">
-                    <input
-                        type="checkbox"
-                        v-model="loginPayload.terms"
-                        name=""
-                        id=""
-                    />
-                    <span class="inline-block ml-3 text-xs leading-5"
-                        >I agree to the
-                        <router-link to="" class="font-bold underline"
-                            >Klump Shopping Service</router-link
-                        >
-                        (incl. electronic communications) and
-                        <router-link to="" class="font-bold underline"
-                            >Privacy Policy</router-link
-                        ></span
+                <ValidationProvider rules="email|required" v-slot="{ errors }">
+                    <klump-checkout-input
+                        v-model="email"
+                        :customClass="'rounded-tl-md rounded-tr-md'"
+                        :inputProp="{
+                            type: 'email',
+                            ref: 'email',
+                        }"
+                        :errorMessages="errors"
                     >
-                </div>
-            </ValidationProvider>
-            <span @click="gotoNextModal(false, {}, 'payModal')">
-                <klump-checkout-button :disabled="invalid"
-                    >Continue</klump-checkout-button
+                        Email
+                    </klump-checkout-input>
+                </ValidationProvider>
+                <ValidationProvider
+                    rules="password-valid|required"
+                    v-slot="{ errors }"
                 >
-            </span>
+                    <klump-checkout-input
+                        v-model="password"
+                        :customClass="'rounded-bl-md rounded-br-md'"
+                        :inputProp="{
+                            type: 'password',
+                            ref: 'password',
+                        }"
+                        :errorMessages="errors"
+                    >
+                        Password
+                    </klump-checkout-input>
+                </ValidationProvider>
+                <ValidationProvider rules="required|terms-checked" tag="div">
+                    <div class="flex my-5">
+                        <input
+                            type="checkbox"
+                            v-model="loginPayload.terms"
+                            name=""
+                            id=""
+                        />
+                        <span class="inline-block ml-3 text-xs leading-5"
+                            >I agree to the
+                            <router-link to="" class="font-bold underline"
+                                >Klump Shopping Service</router-link
+                            >
+                            (incl. electronic communications) and
+                            <router-link to="" class="font-bold underline"
+                                >Privacy Policy</router-link
+                            ></span
+                        >
+                    </div>
+                </ValidationProvider>
+                <span @click="gotoNextModal(false, {}, 'payModal')">
+                    <klump-checkout-button :disabled="invalid"
+                        >Continue</klump-checkout-button
+                    >
+                </span>
+            </form>
         </ValidationObserver>
         <p class="text-lg leading-25 text-secondary text-center mt-6">
             Don't have an account?
