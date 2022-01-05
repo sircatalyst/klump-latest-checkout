@@ -22,7 +22,7 @@ export default {
     },
     created() {
         setTimeout(() => {
-            this.$emit('clearAlert');
+            this.$store.commit('clearAlert');
         }, 6000);
         window.scrollTo(0, 0);
     },
