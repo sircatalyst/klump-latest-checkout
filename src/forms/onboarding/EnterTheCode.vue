@@ -2,8 +2,8 @@
     <klump-checkout-container>
         <template v-slot:header> Enter the code </template>
         <p class="mb-6 leading-30">
-            A code has been sent to <strong>+234 812 263 2296.</strong> You
-            should get it within 20 seconds.
+            A code has been sent to <strong>{{ getPhone }}.</strong> You should
+            get it within 20 seconds.
         </p>
         <ValidationObserver v-slot="{ invalid }">
             <form
@@ -67,6 +67,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import { ValidationObserver, ValidationProvider } from 'vee-validate';
 import '../../validations.js';
 import KlumpCheckoutButton from '@/components/KlumpCheckoutButton.vue';
@@ -77,6 +78,9 @@ import gotoNextModalMixin from '../../mixins/gotoNextModal';
 export default {
     name: 'EnterTheCode',
     mixins: [gotoNextModalMixin],
+    computed: {
+        ...mapGetters(['getPhone']),
+    },
     components: {
         ValidationObserver,
         ValidationProvider,
