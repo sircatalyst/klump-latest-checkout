@@ -20,7 +20,7 @@ const gotoNextModalMixin = {
         payload: {
             deep: true,
             handler(value) {
-                this.tel = `+${value.dialCode} `;
+                this.tel = `+${value.dialCode}`;
             },
         },
     },

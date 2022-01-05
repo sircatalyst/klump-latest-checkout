@@ -1,5 +1,6 @@
 <template>
     <div>
+        <Alert v-if="getAlert != null" :alert="getAlert" />
         <four-easy-payments
             v-show="showFourEasyPaymentsModal"
             @gotoNextModal="handleGotoNextModal"
@@ -61,6 +62,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import FourEasyPayments from '@/forms/onboarding/FourEasyPayments';
 import VerifyYourDetails from '@/forms/onboarding/VerifyYourDetails';
 import EnterTheCode from '@/forms/onboarding/EnterTheCode';
@@ -76,6 +78,7 @@ import FourInterestFreeInstallment from '@/forms/checkout/FourInterestFreeInstal
 import SuccessfulTransaction from '@/forms/returning_user/SuccessfulTransaction';
 import SignIn from '@/forms/returning_user/SignIn';
 import Pay from '@/forms/returning_user/Pay';
+import Alert from '@/components/Alerts/Alert';
 
 export default {
     name: 'Home',
@@ -95,6 +98,7 @@ export default {
         SuccessfulTransaction,
         SignIn,
         Pay,
+        Alert,
     },
     data() {
         return {
@@ -115,6 +119,9 @@ export default {
             showPayModal: false,
             payload: {},
         };
+    },
+    computed: {
+        ...mapGetters(['getAlert']),
     },
     methods: {
         handleGotoNextModal(param) {
