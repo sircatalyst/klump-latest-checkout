@@ -1,6 +1,5 @@
 <template>
     <div>
-        <Alert v-if="getAlert != null" :alert="getAlert" />
         <klump-checkout-container>
             <template v-slot:header> Sign in </template>
             <p class="mb-6 leading-30">
@@ -88,13 +87,12 @@ import KlumpCheckoutButton from '@/components/KlumpCheckoutButton';
 import KlumpCheckoutContainer from '@/components/KlumpCheckoutContainer';
 import KlumpCheckoutInput from '@/components/KlumpCheckoutInput';
 import gotoNextModalMixin from '../../mixins/gotoNextModal';
-import Alert from '@/components/Alerts/Alert';
 
 export default {
     name: 'SignIn',
     mixins: [gotoNextModalMixin],
     computed: {
-        ...mapGetters(['getAlert', 'isLoggedIn']),
+        ...mapGetters(['isLoggedIn']),
     },
     components: {
         ValidationObserver,
@@ -102,7 +100,6 @@ export default {
         KlumpCheckoutButton,
         KlumpCheckoutContainer,
         KlumpCheckoutInput,
-        Alert,
     },
     data() {
         return {
