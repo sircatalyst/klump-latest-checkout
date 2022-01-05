@@ -6,13 +6,11 @@
             your mobile phone number to get started.
         </p>
         <ValidationObserver v-slot="{ invalid }">
-            <form
-                @submit.prevent="
-                    gotoNextModal(invalid, { tel }, 'enterTheCodeModal')
-                "
-                autocomplete="off"
-            >
-                <ValidationProvider rules="phone-valid" v-slot="{ errors }">
+            <form @submit.prevent="verifyUserDetails" autocomplete="off">
+                <ValidationProvider
+                    rules="required|phone-valid"
+                    v-slot="{ errors }"
+                >
                     <div class="relative">
                         <div
                             class="absolute border-r border-left-b"
@@ -97,11 +95,7 @@
                         >
                         apply.
                     </p>
-                    <span
-                        @click="
-                            gotoNextModal(invalid, { tel }, 'enterTheCodeModal')
-                        "
-                    >
+                    <span>
                         <klump-checkout-button :disabled="invalid"
                             >Continue</klump-checkout-button
                         >
@@ -113,6 +107,7 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
 import { ValidationObserver, ValidationProvider } from 'vee-validate';
 import '../../validations.js';
 import VueCountryCode from 'vue-country-code';
@@ -129,6 +124,25 @@ export default {
         VueCountryCode,
         KlumpCheckoutContainer,
         KlumpCheckoutButton,
+    },
+    computed: {
+        ...mapGetters(['getAlert', 'getOtpStatus']),
+    },
+    watch: {
+        getOtpStatus(bool) {
+            if (bool) {
+                this.gotoNextModal(false, {}, 'enterTheCodeModal');
+            }
+        },
+    },
+    methods: {
+        ...mapActions(['generatePhoneOtp']),
+        verifyUserDetails() {
+            const payload = {
+                phone: this.tel,
+            };
+            this.generatePhoneOtp(payload);
+        },
     },
 };
 </script>
