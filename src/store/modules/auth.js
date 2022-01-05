@@ -5,6 +5,8 @@ const state = {
     isPhoneVerified: false,
     otpSent: false,
     phone: null,
+    email: null,
+    password: null,
     loggedUser: {},
     refreshingToken: null,
     token: null,
@@ -15,6 +17,8 @@ const getters = {
     getIsPhoneVerified: (state) => state.isPhoneVerified,
     getOtpStatus: (state) => state.otpSent,
     getPhone: (state) => state.phone,
+    getEmail: (state) => state.email,
+    getPassword: (state) => state.password,
     isLoggedIn: (state) => state.isLoggedIn,
     refreshingToken: (state) => state.refreshingToken,
     token: (state) => state.token,
@@ -36,6 +40,12 @@ const mutations = {
     },
     setPhone: (state, data) => {
         state.phone = data;
+    },
+    setEmail: (state, email) => {
+        state.email = email;
+    },
+    setPassword: (state, password) => {
+        state.password = password;
     },
     setPhoneVerified: (state, bool) => {
         state.isPhoneVerified = bool;
