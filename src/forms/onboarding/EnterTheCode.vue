@@ -26,7 +26,7 @@
                         }"
                         :errorMessages="errors"
                     >
-                        Enter the 6-digit code here
+                        Enter the 5-digit code here
                     </klump-checkout-input>
                 </ValidationProvider>
                 <div class="mb-8">
