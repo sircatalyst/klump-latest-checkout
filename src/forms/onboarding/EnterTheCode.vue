@@ -6,16 +6,7 @@
             get it within 20 seconds.
         </p>
         <ValidationObserver v-slot="{ invalid }">
-            <form
-                @submit.prevent="
-                    gotoNextModal(
-                        invalid,
-                        { otp: payload.otp },
-                        'whatsYourEmailModal'
-                    )
-                "
-                autocomplete="off"
-            >
+            <form @submit.prevent="submitOtp" autocomplete="off">
                 <ValidationProvider rules="required" v-slot="{ errors }">
                     <klump-checkout-input
                         v-model="payload.otp"
@@ -30,11 +21,11 @@
                     </klump-checkout-input>
                 </ValidationProvider>
                 <div class="mb-8">
-                    <router-link :to="{ name: 'verifyyourdetails' }">
-                        <span class="text-light-blue underline cursor-pointer"
-                            >Change phone number</span
-                        >
-                    </router-link>
+                    <span
+                        @click="goBackToVerifyYourDetails"
+                        class="text-light-blue underline cursor-pointer"
+                        >Change phone number</span
+                    >
                 </div>
                 <p class="text-xs text-primary-grey my-5">
                     This site is protected by reCAPTCHA Enterprise and the
@@ -48,15 +39,7 @@
                     >
                     apply.
                 </p>
-                <span
-                    @click="
-                        gotoNextModal(
-                            invalid,
-                            { otp: payload.otp },
-                            'whatsYourEmailModal'
-                        )
-                    "
-                >
+                <span>
                     <klump-checkout-button :disabled="invalid"
                         >Continue</klump-checkout-button
                     >
@@ -67,7 +50,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import { ValidationObserver, ValidationProvider } from 'vee-validate';
 import '../../validations.js';
 import KlumpCheckoutButton from '@/components/KlumpCheckoutButton.vue';
@@ -78,15 +61,35 @@ import gotoNextModalMixin from '../../mixins/gotoNextModal';
 export default {
     name: 'EnterTheCode',
     mixins: [gotoNextModalMixin],
-    computed: {
-        ...mapGetters(['getPhone']),
-    },
     components: {
         ValidationObserver,
         ValidationProvider,
         KlumpCheckoutContainer,
         KlumpCheckoutButton,
         KlumpCheckoutInput,
+    },
+    computed: {
+        ...mapGetters(['getPhone', 'getIsPhoneVerified']),
+    },
+    watch: {
+        getIsPhoneVerified(bool) {
+            if (bool) {
+                this.gotoNextModal(false, {}, 'whatsYourEmailModal');
+            }
+        },
+    },
+    methods: {
+        ...mapActions(['verifyPhoneOtp']),
+        submitOtp() {
+            const payload = {
+                phone: this.getPhone,
+                otp: this.payload.otp,
+            };
+            this.verifyPhoneOtp(payload);
+        },
+        goBackToVerifyYourDetails() {
+            this.$emit('goToVerifyYourDetails');
+        },
     },
 };
 </script>

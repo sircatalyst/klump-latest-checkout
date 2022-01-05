@@ -126,7 +126,7 @@ export default {
         KlumpCheckoutButton,
     },
     computed: {
-        ...mapGetters(['getAlert', 'getOtpStatus']),
+        ...mapGetters(['getOtpStatus']),
     },
     watch: {
         getOtpStatus(bool) {

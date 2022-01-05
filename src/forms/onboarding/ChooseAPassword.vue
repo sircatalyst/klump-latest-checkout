@@ -7,16 +7,7 @@
             be at least 7 characters long.
         </p>
         <ValidationObserver v-slot="{ invalid }">
-            <form
-                @submit.prevent="
-                    gotoNextModal(
-                        invalid,
-                        { password: payload.password },
-                        'completeYourAccountModal'
-                    )
-                "
-                autocomplete="off"
-            >
+            <form @submit.prevent="submitPassword" autocomplete="off">
                 <ValidationProvider
                     rules="password-valid|required"
                     v-slot="{ errors }"
@@ -45,15 +36,7 @@
                     >
                     apply.
                 </p>
-                <span
-                    @click="
-                        gotoNextModal(
-                            invalid,
-                            { password: payload.password },
-                            'completeYourAccountModal'
-                        )
-                    "
-                >
+                <span>
                     <klump-checkout-button :disabled="invalid"
                         >Continue</klump-checkout-button
                     >
@@ -64,6 +47,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import { ValidationObserver, ValidationProvider } from 'vee-validate';
 import '../../validations.js';
 import KlumpCheckoutButton from '@/components/KlumpCheckoutButton';
@@ -80,6 +64,21 @@ export default {
         KlumpCheckoutButton,
         KlumpCheckoutContainer,
         KlumpCheckoutInput,
+    },
+    computed: {
+        ...mapGetters(['getPassword']),
+    },
+    watch: {
+        getPassword(data) {
+            if (data !== null) {
+                this.gotoNextModal(false, {}, 'completeYourAccountModal');
+            }
+        },
+    },
+    methods: {
+        submitPassword() {
+            this.$store.commit('setPassword', this.payload.password);
+        },
     },
 };
 </script>
