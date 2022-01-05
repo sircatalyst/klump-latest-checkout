@@ -12,6 +12,8 @@
         <enter-the-code
             v-show="showEnterTheCodeModal"
             @gotoNextModal="handleGotoNextModal"
+            @goToVerifyYourDetails="handleGoToVerifyYourDetails"
+            :key="reRender"
         />
         <whats-your-email
             v-show="showWhatsYourEmailModal"
@@ -117,6 +119,7 @@ export default {
             showSuccessfulTransactionModal: false,
             showSignInModal: false,
             showPayModal: false,
+            reRender: 0,
             payload: {},
         };
     },
@@ -196,6 +199,12 @@ export default {
                 default:
                     this.showFourEasyPaymentsModal = true;
             }
+        },
+        handleGoToVerifyYourDetails() {
+            this.reRender++;
+            this.showEnterTheCodeModal = false;
+            this.showVerifyYourDetailsModal = true;
+            this.$store.commit('setOtpStatus', false);
         },
     },
 };
