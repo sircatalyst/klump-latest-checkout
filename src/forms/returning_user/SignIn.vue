@@ -1,19 +1,19 @@
 <template>
     <div>
-        <Alert v-if="alert != null" @clearAlert="removeAlert" :alert="alert" />
+        <Alert v-if="getAlert != null" :alert="getAlert" />
         <klump-checkout-container>
             <template v-slot:header> Sign in </template>
             <p class="mb-6 leading-30">
                 Please enter your Klump email and password to check out
             </p>
             <ValidationObserver v-slot="{ invalid }">
-                <form @submit.prevent="authenticateUser" autocomplete="off">
+                <form @submit.prevent="signInUser" autocomplete="off">
                     <ValidationProvider
                         rules="email|required"
                         v-slot="{ errors }"
                     >
                         <klump-checkout-input
-                            v-model="loginPayload.email"
+                            v-model="payload.email"
                             :customClass="'rounded-tl-md rounded-tr-md'"
                             :inputProp="{
                                 type: 'email',
@@ -29,7 +29,7 @@
                         v-slot="{ errors }"
                     >
                         <klump-checkout-input
-                            v-model="loginPayload.password"
+                            v-model="payload.password"
                             :customClass="'rounded-bl-md rounded-br-md'"
                             :inputProp="{
                                 type: 'password',
@@ -47,7 +47,7 @@
                         <div class="flex my-5">
                             <input
                                 type="checkbox"
-                                v-model="loginPayload.terms"
+                                v-model="payload.terms"
                                 name=""
                                 id=""
                             />
@@ -81,18 +81,21 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
 import { ValidationObserver, ValidationProvider } from 'vee-validate';
 import '../../validations.js';
 import KlumpCheckoutButton from '@/components/KlumpCheckoutButton';
 import KlumpCheckoutContainer from '@/components/KlumpCheckoutContainer';
 import KlumpCheckoutInput from '@/components/KlumpCheckoutInput';
 import gotoNextModalMixin from '../../mixins/gotoNextModal';
-import authenticateUserMixin from '../../mixins/authenticateUser';
 import Alert from '@/components/Alerts/Alert';
 
 export default {
     name: 'SignIn',
-    mixins: [gotoNextModalMixin, authenticateUserMixin],
+    mixins: [gotoNextModalMixin],
+    computed: {
+        ...mapGetters(['getAlert', 'isLoggedIn']),
+    },
     components: {
         ValidationObserver,
         ValidationProvider,
@@ -101,9 +104,31 @@ export default {
         KlumpCheckoutInput,
         Alert,
     },
+    data() {
+        return {
+            payload: {
+                terms: false,
+                password: '',
+                email: '',
+                type: 'email_password',
+                persona: 'user',
+            },
+        };
+    },
+    watch: {
+        isLoggedIn(bool) {
+            if (bool) {
+                this.$emit('gotoNextModal', {
+                    next: 'payModal',
+                    payload: {},
+                });
+            }
+        },
+    },
     methods: {
-        removeAlert() {
-            this.alert = null;
+        ...mapActions(['signIn']),
+        signInUser() {
+            this.signIn(this.payload);
         },
     },
 };
