@@ -5,16 +5,7 @@
             We'll use it to verify your account later.
         </p>
         <ValidationObserver v-slot="{ invalid }">
-            <form
-                @submit.prevent="
-                    gotoNextModal(
-                        invalid,
-                        { email: payload.email },
-                        'chooseAPasswordModal'
-                    )
-                "
-                autocomplete="off"
-            >
+            <form @submit.prevent="submitEmail" autocomplete="off">
                 <ValidationProvider rules="email|required" v-slot="{ errors }">
                     <klump-checkout-input
                         v-model="payload.email"
@@ -40,15 +31,7 @@
                     >
                     apply.
                 </p>
-                <span
-                    @click="
-                        gotoNextModal(
-                            invalid,
-                            { email: payload.email },
-                            'chooseAPasswordModal'
-                        )
-                    "
-                >
+                <span>
                     <klump-checkout-button :disabled="invalid"
                         >Continue</klump-checkout-button
                     >
@@ -59,6 +42,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import { ValidationObserver, ValidationProvider } from 'vee-validate';
 import '../../validations.js';
 import KlumpCheckoutButton from '@/components/KlumpCheckoutButton';
@@ -75,6 +59,21 @@ export default {
         KlumpCheckoutButton,
         KlumpCheckoutContainer,
         KlumpCheckoutInput,
+    },
+    computed: {
+        ...mapGetters(['getEmail']),
+    },
+    watch: {
+        getEmail(data) {
+            if (data !== null) {
+                this.gotoNextModal(false, {}, 'chooseAPasswordModal');
+            }
+        },
+    },
+    methods: {
+        submitEmail() {
+            this.$store.commit('setEmail', this.payload.email);
+        },
     },
 };
 </script>
