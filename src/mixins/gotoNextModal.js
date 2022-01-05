@@ -14,11 +14,6 @@ const gotoNextModalMixin = {
             form: {
                 terms: false,
             },
-            loginPayload: {
-                terms: false,
-                password: '',
-                email: '',
-            },
         };
     },
     watch: {
