@@ -1,26 +1,35 @@
 const gotoNextModalMixin = {
     data() {
         return {
-            tel: '',
             payload: {
                 dialCode: '',
                 password: '',
                 otp: '',
                 active: false,
+                tel: '',
                 bvn: '',
                 email: '',
                 passport: null,
-            },
-            form: {
+                firstname: '',
+                lastname: '',
+                date_of_birth: '',
+                address: '',
+                apartment: '',
+                city: '',
                 terms: false,
             },
         };
+    },
+    computed: {
+        countryCode() {
+            return `+${this.payload.dialCode}`;
+        },
     },
     watch: {
         payload: {
             deep: true,
             handler(value) {
-                this.tel = `+${value.dialCode}`;
+                this.dialCode = value.dialCode;
             },
         },
     },

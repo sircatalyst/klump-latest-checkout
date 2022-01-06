@@ -2,12 +2,7 @@
     <klump-checkout-container>
         <template v-slot:header> Complete your account</template>
         <ValidationObserver v-slot="{ invalid }">
-            <form
-                @submit.prevent="
-                    gotoNextModal(invalid, { ...form }, 'whatsYourBvnModal')
-                "
-                autocomplete="off"
-            >
+            <form @submit.prevent="submitUserBio" autocomplete="off">
                 <div class="responsive-height container">
                     <p class="mb-6 leading-30">
                         Please share your
@@ -23,7 +18,7 @@
                                 tag="div"
                             >
                                 <klump-checkout-input
-                                    v-model="form.firstname"
+                                    v-model="payload.firstname"
                                     :customClass="'rounded'"
                                     :inputProp="{
                                         type: 'text',
@@ -42,7 +37,7 @@
                                 tag="div"
                             >
                                 <klump-checkout-input
-                                    v-model="form.lastname"
+                                    v-model="payload.lastname"
                                     :customClass="'rounded'"
                                     :inputProp="{
                                         type: 'text',
@@ -61,7 +56,7 @@
                         tag="div"
                     >
                         <klump-checkout-input
-                            v-model="form.dob"
+                            v-model="payload.date_of_birth"
                             :customClass="'rounded'"
                             :inputProp="{
                                 type: 'date',
@@ -78,7 +73,7 @@
                             tag="div"
                         >
                             <klump-checkout-input
-                                v-model="form.address"
+                                v-model="payload.address"
                                 :customClass="'rounded mb-3'"
                                 :inputProp="{
                                     type: 'text',
@@ -89,13 +84,9 @@
                                 Address
                             </klump-checkout-input>
                         </ValidationProvider>
-                        <ValidationProvider
-                            rules="required"
-                            v-slot="{ errors }"
-                            tag="div"
-                        >
+                        <ValidationProvider v-slot="{ errors }" tag="div">
                             <klump-checkout-input
-                                v-model="form.apartment"
+                                v-model="payload.apartment"
                                 :customClass="'rounded mb-3'"
                                 :inputProp="{
                                     type: 'text',
@@ -114,7 +105,7 @@
                                     tag="div"
                                 >
                                     <klump-checkout-input
-                                        v-model="form.city"
+                                        v-model="payload.city"
                                         :customClass="'rounded'"
                                         :inputProp="{
                                             type: 'text',
@@ -133,7 +124,7 @@
                                     tag="div"
                                 >
                                     <klump-checkout-input
-                                        v-model="form.state"
+                                        v-model="payload.state"
                                         :customClass="'rounded'"
                                         :inputProp="{
                                             type: 'text',
@@ -146,30 +137,13 @@
                                 </ValidationProvider>
                             </div>
                         </div>
-                        <ValidationProvider
-                            rules="required"
-                            v-slot="{ errors }"
-                            tag="div"
-                        >
-                            <klump-checkout-input
-                                v-model="form.zipcode"
-                                :customClass="'rounded'"
-                                :inputProp="{
-                                    type: 'text',
-                                    ref: 'zipcode',
-                                }"
-                                :errorMessages="errors"
-                            >
-                                Zip code
-                            </klump-checkout-input>
-                        </ValidationProvider>
                     </div>
                 </div>
                 <ValidationProvider rules="required|terms-checked" tag="div">
                     <div class="flex my-5">
                         <input
                             type="checkbox"
-                            v-model="form.terms"
+                            v-model="payload.terms"
                             name=""
                             id=""
                         />
@@ -185,15 +159,7 @@
                         >
                     </div>
                 </ValidationProvider>
-                <span
-                    @click="
-                        gotoNextModal(
-                            invalid,
-                            { ...form },
-                            'chooseIdentificationModal'
-                        )
-                    "
-                >
+                <span>
                     <klump-checkout-button :disabled="invalid"
                         >Continue</klump-checkout-button
                     >
@@ -204,6 +170,7 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
 import { ValidationObserver, ValidationProvider } from 'vee-validate';
 import '../../validations.js';
 import KlumpCheckoutButton from '@/components/KlumpCheckoutButton';
@@ -220,6 +187,38 @@ export default {
         KlumpCheckoutButton,
         KlumpCheckoutContainer,
         KlumpCheckoutInput,
+    },
+    computed: {
+        ...mapGetters(['getUserBio', 'getPhone', 'getEmail', 'getPassword']),
+    },
+    watch: {
+        getUserBio(data) {
+            if (data !== null) {
+                this.gotoNextModal(false, {}, 'chooseIdentificationModal');
+            }
+        },
+    },
+    methods: {
+        ...mapActions(['createUser']),
+        submitUserBio() {
+            let payload = this.payload;
+            delete payload.dialCode;
+            delete payload.passport;
+            delete payload.otp;
+            delete payload.active;
+            delete payload.tel;
+            delete payload.bvn;
+            delete payload.terms;
+            if (payload.apartment === '') {
+                delete payload.apartment;
+            }
+
+            payload.phone = this.getPhone;
+            payload.email = this.getEmail;
+            payload.password = this.getPassword;
+
+            this.createUser(payload);
+        },
     },
 };
 </script>

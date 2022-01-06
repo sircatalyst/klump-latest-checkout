@@ -4,6 +4,7 @@ const state = {
     isLoggedIn: false,
     isPhoneVerified: false,
     otpSent: false,
+    userBio: null,
     phone: null,
     email: null,
     password: null,
@@ -16,6 +17,7 @@ const getters = {
     getLoggedUser: (state) => state.loggedUser,
     getIsPhoneVerified: (state) => state.isPhoneVerified,
     getOtpStatus: (state) => state.otpSent,
+    getUserBio: (state) => state.userBio,
     getPhone: (state) => state.phone,
     getEmail: (state) => state.email,
     getPassword: (state) => state.password,
@@ -31,6 +33,9 @@ const mutations = {
     },
     setOtpStatus: (state, bool) => {
         state.otpSent = bool;
+    },
+    setUserBio: (state, data) => {
+        state.userBio = data;
     },
     setRefreshToken: (state, data) => {
         state.refreshingToken = data;
@@ -126,6 +131,29 @@ const actions = {
             .catch((error) => {
                 const errorData = JSON.parse(error);
                 commit('setPhoneVerified', false);
+                commit('setAlert', {
+                    type: 'danger',
+                    message: errorData.message,
+                });
+            });
+    },
+    createUser({ commit }, data) {
+        api.post('register', data)
+            .then((response) => {
+                if (!response.ok) {
+                    return Promise.reject(response);
+                }
+                return response.json();
+            })
+            .then((response) => {
+                commit('setUserBio', response.data);
+            })
+            .catch(async (response) => {
+                const error = await response.text().then((text) => text);
+                return Promise.reject(error);
+            })
+            .catch((error) => {
+                const errorData = JSON.parse(error);
                 commit('setAlert', {
                     type: 'danger',
                     message: errorData.message,
