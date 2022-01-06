@@ -10,8 +10,12 @@ const gotoNextModalMixin = {
                 bvn: '',
                 email: '',
                 passport: null,
-            },
-            form: {
+                firstname: '',
+                lastname: '',
+                date_of_birth: '',
+                address: '',
+                apartment: '',
+                city: '',
                 terms: false,
             },
         };
