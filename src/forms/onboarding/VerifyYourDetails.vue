@@ -11,35 +11,41 @@
                     rules="required|phone-valid"
                     v-slot="{ errors }"
                 >
-                    <div class="relative">
-                        <div
-                            class="absolute border-r border-left-b"
-                            style="top: 18px; left: 16px"
-                        >
+                    <div
+                        class="
+                            flex
+                            items-center
+                            w-full
+                            outline-none
+                            h-input
+                            border-xs
+                            py-1
+                            px-2
+                            mb-6
+                            rounded
+                        "
+                        :class="errors[0] ? 'border-red-400' : 'border-input'"
+                    >
+                        <div class="border-r border-left-b">
                             <vue-country-code
                                 @onSelect="onSelect"
                                 :preferredCountries="['ng']"
                             >
                             </vue-country-code>
                         </div>
-                        <input
-                            type="tel"
-                            name=""
-                            v-model="tel"
-                            class="
-                                w-full
-                                outline-none
-                                h-input
-                                border-xs
-                                py-1
-                                mb-6
-                                rounded
-                            "
-                            style="padding-left: 68px"
-                            :class="
-                                errors[0] ? 'border-red-400' : 'border-input'
-                            "
-                        />
+                        <div class="w-full ml-1 flex items-center">
+                            <div
+                                type="tel"
+                                class="inline"
+                                v-text="countryCode"
+                            ></div>
+                            <input
+                                type="tel"
+                                name=""
+                                v-model="payload.tel"
+                                class="outline-none w-full"
+                            />
+                        </div>
                     </div>
                     <div class="flex items-center justify-between mb-8">
                         <div class="flex items-center">
@@ -139,7 +145,7 @@ export default {
         ...mapActions(['generatePhoneOtp']),
         verifyUserDetails() {
             const payload = {
-                phone: this.tel,
+                phone: this.countryCode + this.payload.tel,
             };
             this.generatePhoneOtp(payload);
         },
