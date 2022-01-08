@@ -5,16 +5,7 @@
             We'll use it to verify your account later.
         </p>
         <ValidationObserver v-slot="{ invalid }">
-            <form
-                @submit.prevent="
-                    gotoNextModal(
-                        invalid,
-                        { bvn: payload.bvn },
-                        'connectYourBankModal'
-                    )
-                "
-                autocomplete="off"
-            >
+            <form @submit.prevent="submitBvn" autocomplete="off">
                 <ValidationProvider
                     rules="bvn-valid|required"
                     v-slot="{ errors }"
@@ -58,18 +49,10 @@
                         </svg>
                     </div>
                 </div>
-                <span
-                    @click="
-                        gotoNextModal(
-                            invalid,
-                            { bvn: payload.bvn },
-                            'connectYourBankModal'
-                        )
-                    "
-                >
+                <span>
                     <klump-checkout-button :disabled="invalid"
-                        >Continue</klump-checkout-button
-                    >
+                        >Continue
+                    </klump-checkout-button>
                 </span>
             </form>
         </ValidationObserver>
@@ -77,6 +60,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import { ValidationObserver, ValidationProvider } from 'vee-validate';
 import '../../validations.js';
 import KlumpCheckoutButton from '@/components/KlumpCheckoutButton';
@@ -93,6 +77,23 @@ export default {
         KlumpCheckoutButton,
         KlumpCheckoutContainer,
         KlumpCheckoutInput,
+    },
+    computed: {
+        ...mapGetters(['getUserBio', 'getDoc', 'getDocType', 'getBvn']),
+    },
+    watch: {
+        getBvn(bvn) {
+            if (bvn !== '') {
+                this.$emit('gotoNextModal', {
+                    next: 'whatsYourAccountNumberModal',
+                });
+            }
+        },
+    },
+    methods: {
+        submitBvn() {
+            this.$store.commit('setBvn', this.payload.bvn);
+        },
     },
 };
 </script>
