@@ -39,6 +39,10 @@
             v-show="showWhatsYourBvnModal"
             @gotoNextModal="handleGotoNextModal"
         />
+        <whats-your-account-number
+            v-show="showWhatsYourAccountNumberModal"
+            @gotoNextModal="handleGotoNextModal"
+        />
         <connect-your-bank
             v-show="showConnectYourBankModal"
             @gotoNextModal="handleGotoNextModal"
@@ -78,6 +82,7 @@ import ConnectYourBank from '@/forms/profiling/ConnectYourBank';
 import CompleteCheckout from '@/forms/profiling/CompleteCheckout';
 import FourInterestFreeInstallment from '@/forms/checkout/FourInterestFreeInstallment';
 import SuccessfulTransaction from '@/forms/returning_user/SuccessfulTransaction';
+import WhatsYourAccountNumber from '@/forms/onboarding/WhatsYourAccountNumber';
 import SignIn from '@/forms/returning_user/SignIn';
 import Pay from '@/forms/returning_user/Pay';
 import Alert from '@/components/Alerts/Alert';
@@ -94,6 +99,7 @@ export default {
         ChooseIdentification,
         PassportVerification,
         WhatsYourBvn,
+        WhatsYourAccountNumber,
         ConnectYourBank,
         CompleteCheckout,
         FourInterestFreeInstallment,
@@ -111,6 +117,7 @@ export default {
             showChooseAPasswordModal: false,
             showCompleteYourAccountModal: false,
             showWhatsYourBvnModal: false,
+            showWhatsYourAccountNumberModal: false,
             showConnectYourBankModal: false,
             showCompleteCheckoutModal: false,
             showChooseIdentificationModal: false,
@@ -175,6 +182,11 @@ export default {
                     this.payload = { ...param.payload, ...this.payload };
                     this.showPassportVerificationModal = false;
                     this.showWhatsYourBvnModal = true;
+                    break;
+                case 'whatsYourAccountNumberModal':
+                    this.payload = { ...param.payload, ...this.payload };
+                    this.showWhatsYourBvnModal = false;
+                    this.showWhatsYourAccountNumberModal = true;
                     break;
                 case 'connectYourBankModal':
                     this.payload = { ...param.payload, ...this.payload };
