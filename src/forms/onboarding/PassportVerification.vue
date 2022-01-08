@@ -83,7 +83,20 @@
                     <div class="flex flex-col space-y-4 my-16">
                         <div class="flex items-center space-x-4">
                             <img
+                                v-if="getDocType === 'nin'"
+                                src="../../assets/images/nin.png"
+                                height="30"
+                                width="47.56"
+                            />
+                            <img
+                                v-if="getDocType === 'international_passport'"
                                 src="../../assets/images/passport.png"
+                                height="30"
+                                width="47.56"
+                            />
+                            <img
+                                v-if="getDocType === 'driver_license'"
+                                src="../../assets/images/drivers_license.png"
                                 height="30"
                                 width="47.56"
                             />
@@ -146,7 +159,7 @@
                         </div>
                     </div>
                 </div>
-                <span @click="gotoNextModal(false, {}, 'whatsYourBvnModal')">
+                <span @click="submitKyc">
                     <klump-checkout-button :disabled="invalid"
                         >Continue</klump-checkout-button
                     >
@@ -157,6 +170,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import { ValidationObserver, ValidationProvider } from 'vee-validate';
 import '../../validations.js';
 import KlumpCheckoutButton from '@/components/KlumpCheckoutButton.vue';
@@ -178,6 +192,16 @@ export default {
             file: null,
         };
     },
+    computed: {
+        ...mapGetters(['getDocType', 'getDoc']),
+    },
+    watch: {
+        getDoc(file) {
+            if (file !== '') {
+                this.gotoNextModal(false, {}, 'whatsYourBvnModal');
+            }
+        },
+    },
     methods: {
         async uploadPassport(event) {
             const { valid } = await this.$refs.provider.validate(event);
@@ -192,6 +216,9 @@ export default {
                 reader.readAsDataURL(img);
             }
             return true;
+        },
+        submitKyc() {
+            this.$store.commit('setDoc', this.payload.passport);
         },
     },
 };
