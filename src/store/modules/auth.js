@@ -6,6 +6,9 @@ const state = {
     otpSent: false,
     userBio: null,
     phone: null,
+    docType: '',
+    doc: '',
+    bvn: '',
     email: null,
     password: null,
     loggedUser: {},
@@ -18,8 +21,11 @@ const getters = {
     getIsPhoneVerified: (state) => state.isPhoneVerified,
     getOtpStatus: (state) => state.otpSent,
     getUserBio: (state) => state.userBio,
+    getDocType: (state) => state.docType,
+    getDoc: (state) => state.doc,
     getPhone: (state) => state.phone,
     getEmail: (state) => state.email,
+    getBvn: (state) => state.bvn,
     getPassword: (state) => state.password,
     isLoggedIn: (state) => state.isLoggedIn,
     refreshingToken: (state) => state.refreshingToken,
@@ -36,6 +42,15 @@ const mutations = {
     },
     setUserBio: (state, data) => {
         state.userBio = data;
+    },
+    setDocType: (state, type) => {
+        state.docType = type;
+    },
+    setDoc: (state, file) => {
+        state.doc = file;
+    },
+    setBvn: (state, bvn) => {
+        state.bvn = bvn;
     },
     setRefreshToken: (state, data) => {
         state.refreshingToken = data;
@@ -147,6 +162,52 @@ const actions = {
             })
             .then((response) => {
                 commit('setUserBio', response.data);
+            })
+            .catch(async (response) => {
+                const error = await response.text().then((text) => text);
+                return Promise.reject(error);
+            })
+            .catch((error) => {
+                const errorData = JSON.parse(error);
+                commit('setAlert', {
+                    type: 'danger',
+                    message: errorData.message,
+                });
+            });
+    },
+    verifyUserId({ commit }, data) {
+        api.post('register/validate-id', data)
+            .then((response) => {
+                if (!response.ok) {
+                    return Promise.reject(response);
+                }
+                return response.json();
+            })
+            .then((response) => {
+                commit('setUserBio', response.data);
+            })
+            .catch(async (response) => {
+                const error = await response.text().then((text) => text);
+                return Promise.reject(error);
+            })
+            .catch((error) => {
+                const errorData = JSON.parse(error);
+                commit('setAlert', {
+                    type: 'danger',
+                    message: errorData.message,
+                });
+            });
+    },
+    prequalifyUser({ commit }, data) {
+        api.post('register/pre-qualify', data)
+            .then((response) => {
+                if (!response.ok) {
+                    return Promise.reject(response);
+                }
+                return response.json();
+            })
+            .then((response) => {
+                commit('setBvn', response.data);
             })
             .catch(async (response) => {
                 const error = await response.text().then((text) => text);
