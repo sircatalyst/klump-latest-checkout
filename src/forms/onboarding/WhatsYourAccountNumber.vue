@@ -1,25 +1,22 @@
 <template>
     <klump-checkout-container>
-        <template v-slot:header> What's your BVN?</template>
+        <template v-slot:header> What is your account number?</template>
         <p class="mb-6 leading-30">
-            We'll use it to verify your account later.
+            We won’t use this for anything rather than identification
         </p>
         <ValidationObserver v-slot="{ invalid }">
-            <form @submit.prevent="submitBvn" autocomplete="off">
-                <ValidationProvider
-                    rules="bvn-valid|required"
-                    v-slot="{ errors }"
-                >
+            <form @submit.prevent="submitPrequalifications" autocomplete="off">
+                <ValidationProvider rules="required" v-slot="{ errors }">
                     <klump-checkout-input
-                        v-model="payload.bvn"
+                        v-model="payload.account_number"
                         :customClass="'rounded mb-6'"
                         :inputProp="{
                             type: 'tel',
-                            ref: 'bvn',
+                            ref: 'account_number',
                         }"
                         :errorMessages="errors"
                     >
-                        Bank Verification Number
+                        Account Number
                     </klump-checkout-input>
                 </ValidationProvider>
                 <div class="flex items-center justify-between mb-8">
@@ -60,7 +57,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import { ValidationObserver, ValidationProvider } from 'vee-validate';
 import '../../validations.js';
 import KlumpCheckoutButton from '@/components/KlumpCheckoutButton';
@@ -69,7 +66,7 @@ import KlumpCheckoutInput from '@/components/KlumpCheckoutInput';
 import gotoNextModalMixin from '../../mixins/gotoNextModal';
 
 export default {
-    name: 'WhatsYourBvn',
+    name: 'WhatsYourAccountNumber',
     mixins: [gotoNextModalMixin],
     components: {
         ValidationObserver,
@@ -81,19 +78,9 @@ export default {
     computed: {
         ...mapGetters(['getUserBio', 'getDoc', 'getDocType', 'getBvn']),
     },
-    watch: {
-        getBvn(bvn) {
-            if (bvn !== '') {
-                this.$emit('gotoNextModal', {
-                    next: 'whatsYourAccountNumberModal',
-                });
-            }
-        },
-    },
     methods: {
-        submitBvn() {
-            this.$store.commit('setBvn', this.payload.bvn);
-        },
+        ...mapActions(['prequalifyUser']),
+        submitPrequalifications() {},
     },
 };
 </script>

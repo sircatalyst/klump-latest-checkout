@@ -6,7 +6,10 @@
             installments.
         </p>
         <div class="flex flex-col space-y-3">
-            <span @click="gotoNextModal(false, { verificationMethod: 'passport' }, 'passportVerificationModal')">
+            <span
+                class="cursor-pointer"
+                @click="chooseDocType('international_passport')"
+            >
                 <div class="border-xxs border-input rounded-5 p-3">
                     <div class="flex items-center space-x-4">
                         <img
@@ -14,11 +17,13 @@
                             height="30"
                             width="47.56"
                         />
-                        <p class="text-document text-base leading-18">Passport</p>
+                        <p class="text-document text-base leading-18">
+                            Passport
+                        </p>
                     </div>
                 </div>
             </span>
-            <span @click="gotoNextModal(false, { verificationMethod: 'national_id_card' }, 'passportVerificationModal')">
+            <span class="cursor-pointer" @click="chooseDocType('nin')">
                 <div class="border-xxs border-input rounded-5 p-3">
                     <div class="flex items-center space-x-4">
                         <img
@@ -32,7 +37,10 @@
                     </div>
                 </div>
             </span>
-            <span @click="gotoNextModal(false, { verificationMethod: 'drivers_license' }, 'passportVerificationModal')">
+            <span
+                class="cursor-pointer"
+                @click="chooseDocType('driver_license')"
+            >
                 <div class="border-xxs border-input rounded-5 p-3">
                     <div class="flex items-center space-x-4">
                         <img
@@ -51,6 +59,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import KlumpCheckoutContainer from '@/components/KlumpCheckoutContainer.vue';
 import gotoNextModalMixin from '../../mixins/gotoNextModal';
 
@@ -59,6 +68,21 @@ export default {
     mixins: [gotoNextModalMixin],
     components: {
         KlumpCheckoutContainer,
-    }
+    },
+    computed: {
+        ...mapGetters(['getDocType']),
+    },
+    watch: {
+        getDocType(type) {
+            if (type !== '') {
+                this.gotoNextModal(false, {}, 'passportVerificationModal');
+            }
+        },
+    },
+    methods: {
+        chooseDocType(type) {
+            this.$store.commit('setDocType', type);
+        },
+    },
 };
 </script>
