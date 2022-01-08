@@ -17,6 +17,7 @@ const gotoNextModalMixin = {
                 apartment: '',
                 city: '',
                 terms: false,
+                account_number: '',
             },
         };
     },
