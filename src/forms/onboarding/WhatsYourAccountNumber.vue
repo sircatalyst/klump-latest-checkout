@@ -8,7 +8,7 @@
             <form @submit.prevent="submitPrequalifications" autocomplete="off">
                 <ValidationProvider rules="required" v-slot="{ errors }">
                     <klump-checkout-input
-                        v-model="payload.bvn"
+                        v-model="payload.account_number"
                         :customClass="'rounded mb-6'"
                         :inputProp="{
                             type: 'tel',
