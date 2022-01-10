@@ -43,6 +43,10 @@
             v-show="showWhatsYourAccountNumberModal"
             @gotoNextModal="handleGotoNextModal"
         />
+        <hang-on
+            v-show="showHangOnModal"
+            @gotoNextModal="handleGotoNextModal"
+        />
         <connect-your-bank
             v-show="showConnectYourBankModal"
             @gotoNextModal="handleGotoNextModal"
@@ -83,6 +87,7 @@ import CompleteCheckout from '@/forms/profiling/CompleteCheckout';
 import FourInterestFreeInstallment from '@/forms/checkout/FourInterestFreeInstallment';
 import SuccessfulTransaction from '@/forms/returning_user/SuccessfulTransaction';
 import WhatsYourAccountNumber from '@/forms/onboarding/WhatsYourAccountNumber';
+import HangOn from '@/forms/onboarding/HangOn';
 import SignIn from '@/forms/returning_user/SignIn';
 import Pay from '@/forms/returning_user/Pay';
 import Alert from '@/components/Alerts/Alert';
@@ -100,6 +105,7 @@ export default {
         PassportVerification,
         WhatsYourBvn,
         WhatsYourAccountNumber,
+        HangOn,
         ConnectYourBank,
         CompleteCheckout,
         FourInterestFreeInstallment,
@@ -118,6 +124,7 @@ export default {
             showCompleteYourAccountModal: false,
             showWhatsYourBvnModal: false,
             showWhatsYourAccountNumberModal: false,
+            showHangOnModal: false,
             showConnectYourBankModal: false,
             showCompleteCheckoutModal: false,
             showChooseIdentificationModal: false,
@@ -187,6 +194,11 @@ export default {
                     this.payload = { ...param.payload, ...this.payload };
                     this.showWhatsYourBvnModal = false;
                     this.showWhatsYourAccountNumberModal = true;
+                    break;
+                case 'hangOnModal':
+                    this.payload = { ...param.payload, ...this.payload };
+                    this.showWhatsYourAccountNumberModal = false;
+                    this.showHangOnModal = true;
                     break;
                 case 'connectYourBankModal':
                     this.payload = { ...param.payload, ...this.payload };
