@@ -9,6 +9,7 @@ const state = {
     docType: '',
     doc: '',
     bvn: '',
+    accountNumber: '',
     email: null,
     password: null,
     loggedUser: {},
@@ -26,6 +27,7 @@ const getters = {
     getPhone: (state) => state.phone,
     getEmail: (state) => state.email,
     getBvn: (state) => state.bvn,
+    getAccountNumber: (state) => state.accountNumber,
     getPassword: (state) => state.password,
     isLoggedIn: (state) => state.isLoggedIn,
     refreshingToken: (state) => state.refreshingToken,
@@ -51,6 +53,9 @@ const mutations = {
     },
     setBvn: (state, bvn) => {
         state.bvn = bvn;
+    },
+    setAccountNumber: (state, account_number) => {
+        state.accountNumber = account_number;
     },
     setRefreshToken: (state, data) => {
         state.refreshingToken = data;

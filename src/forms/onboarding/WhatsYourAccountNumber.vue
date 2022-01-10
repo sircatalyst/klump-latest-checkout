@@ -5,7 +5,7 @@
             We won’t use this for anything rather than identification
         </p>
         <ValidationObserver v-slot="{ invalid }">
-            <form @submit.prevent="submitPrequalifications" autocomplete="off">
+            <form @submit.prevent="submitAccountNumber" autocomplete="off">
                 <ValidationProvider rules="required" v-slot="{ errors }">
                     <klump-checkout-input
                         v-model="payload.account_number"
@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters } from 'vuex';
 import { ValidationObserver, ValidationProvider } from 'vee-validate';
 import '../../validations.js';
 import KlumpCheckoutButton from '@/components/KlumpCheckoutButton';
@@ -76,11 +76,21 @@ export default {
         KlumpCheckoutInput,
     },
     computed: {
-        ...mapGetters(['getUserBio', 'getDoc', 'getDocType', 'getBvn']),
+        ...mapGetters(['getAccountNumber']),
+    },
+    watch: {
+        getAccountNumber(account_number) {
+            if (account_number !== '') {
+                this.$emit('gotoNextModal', {
+                    next: 'hangOnModal',
+                });
+            }
+        },
     },
     methods: {
-        ...mapActions(['prequalifyUser']),
-        submitPrequalifications() {},
+        submitAccountNumber() {
+            this.$store.commit('setAccountNumber', this.payload.account_number);
+        },
     },
 };
 </script>
