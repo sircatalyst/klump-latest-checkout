@@ -10,10 +10,13 @@ const state = {
     doc: '',
     bvn: '',
     accountNumber: '',
+    monoAuthCode: '',
+    bankName: '',
     email: null,
     password: null,
     loggedUser: {},
     refreshingToken: null,
+    isBankConnected: false,
     token: null,
 };
 
@@ -28,6 +31,9 @@ const getters = {
     getEmail: (state) => state.email,
     getBvn: (state) => state.bvn,
     getAccountNumber: (state) => state.accountNumber,
+    getIsBankConnected: (state) => state.isBankConnected,
+    getMonoAuthCode: (state) => state.monoAuthCode,
+    getBankName: (state) => state.bankName,
     getPassword: (state) => state.password,
     isLoggedIn: (state) => state.isLoggedIn,
     refreshingToken: (state) => state.refreshingToken,
@@ -56,6 +62,15 @@ const mutations = {
     },
     setAccountNumber: (state, account_number) => {
         state.accountNumber = account_number;
+    },
+    setIsBankConnected: (state, bool) => {
+        state.isBankConnected = bool;
+    },
+    setMonoAuthCode: (state, code) => {
+        state.monoAuthCode = code;
+    },
+    setBankName: (state, name) => {
+        state.bankName = name;
     },
     setRefreshToken: (state, data) => {
         state.refreshingToken = data;
@@ -212,7 +227,7 @@ const actions = {
                 return response.json();
             })
             .then((response) => {
-                commit('setBvn', response.data);
+                console.log(response.data);
             })
             .catch(async (response) => {
                 const error = await response.text().then((text) => text);
