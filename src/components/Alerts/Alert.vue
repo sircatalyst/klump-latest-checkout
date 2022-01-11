@@ -23,7 +23,7 @@ export default {
     created() {
         setTimeout(() => {
             this.$store.commit('clearAlert');
-        }, 6000);
+        }, 12000);
         window.scrollTo(0, 0);
     },
 };
@@ -35,5 +35,6 @@ export default {
     top: 10px;
     right: 10px;
     z-index: 100;
+    width: 25%;
 }
 </style>
