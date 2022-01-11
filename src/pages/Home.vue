@@ -43,6 +43,7 @@
             v-show="showWhatsYourAccountNumberModal"
             @gotoNextModal="handleGotoNextModal"
         />
+        <mono v-show="showMonoModal" @gotoNextModal="handleGotoNextModal" />
         <hang-on
             v-show="showHangOnModal"
             @gotoNextModal="handleGotoNextModal"
@@ -87,6 +88,7 @@ import CompleteCheckout from '@/forms/profiling/CompleteCheckout';
 import FourInterestFreeInstallment from '@/forms/checkout/FourInterestFreeInstallment';
 import SuccessfulTransaction from '@/forms/returning_user/SuccessfulTransaction';
 import WhatsYourAccountNumber from '@/forms/onboarding/WhatsYourAccountNumber';
+import Mono from '@/forms/onboarding/Mono';
 import HangOn from '@/forms/onboarding/HangOn';
 import SignIn from '@/forms/returning_user/SignIn';
 import Pay from '@/forms/returning_user/Pay';
@@ -106,6 +108,7 @@ export default {
         WhatsYourBvn,
         WhatsYourAccountNumber,
         HangOn,
+        Mono,
         ConnectYourBank,
         CompleteCheckout,
         FourInterestFreeInstallment,
@@ -124,6 +127,7 @@ export default {
             showCompleteYourAccountModal: false,
             showWhatsYourBvnModal: false,
             showWhatsYourAccountNumberModal: false,
+            showMonoModal: false,
             showHangOnModal: false,
             showConnectYourBankModal: false,
             showCompleteCheckoutModal: false,
@@ -195,19 +199,24 @@ export default {
                     this.showWhatsYourBvnModal = false;
                     this.showWhatsYourAccountNumberModal = true;
                     break;
-                case 'hangOnModal':
-                    this.payload = { ...param.payload, ...this.payload };
-                    this.showWhatsYourAccountNumberModal = false;
-                    this.showHangOnModal = true;
-                    break;
                 case 'connectYourBankModal':
                     this.payload = { ...param.payload, ...this.payload };
-                    this.showWhatsYourBvnModal = false;
+                    this.showWhatsYourAccountNumberModal = false;
                     this.showConnectYourBankModal = true;
+                    break;
+                case 'monoModal':
+                    this.payload = { ...param.payload, ...this.payload };
+                    this.showConnectYourBankModal = false;
+                    this.showMonoModal = true;
+                    break;
+                case 'hangOnModal':
+                    this.payload = { ...param.payload, ...this.payload };
+                    this.showMonoModal = false;
+                    this.showHangOnModal = true;
                     break;
                 case 'completeCheckoutModal':
                     this.payload = { ...param.payload, ...this.payload };
-                    this.showConnectYourBankModal = false;
+                    this.showHangOnModal = false;
                     this.showCompleteCheckoutModal = true;
                     break;
                 case 'fourInterestFreeInstallmentModal':

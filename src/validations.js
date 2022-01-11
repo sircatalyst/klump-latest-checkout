@@ -32,6 +32,10 @@ extend('bvn-valid', (value) => {
     const bvnRegex = /^[0-9]{11}$/;
     return bvnRegex.test(value);
 });
+extend('account-number', (value) => {
+    const accountRegex = /^[0-9]{10}$/;
+    return accountRegex.test(value);
+});
 
 extend('terms-checked', (value) => {
     return value === true;

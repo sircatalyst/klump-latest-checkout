@@ -18,6 +18,7 @@ const gotoNextModalMixin = {
                 city: '',
                 terms: false,
                 account_number: '',
+                auth_code: null,
             },
         };
     },
