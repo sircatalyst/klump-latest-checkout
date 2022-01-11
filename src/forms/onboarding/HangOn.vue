@@ -62,6 +62,7 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
 import gotoNextModalMixin from '../../mixins/gotoNextModal';
 import KlumpCheckoutContainer from '@/components/KlumpCheckoutContainer';
 
@@ -70,6 +71,41 @@ export default {
     mixins: [gotoNextModalMixin],
     components: {
         KlumpCheckoutContainer,
+    },
+    computed: {
+        ...mapGetters([
+            'getUserBio',
+            'getDoc',
+            'getDocType',
+            'getMonoAuthCode',
+            'getBankName',
+            'getAccountNumber',
+            'getBvn',
+        ]),
+    },
+    watch: {
+        getMonoAuthCode(code) {
+            if (code !== '') {
+                let payload = {};
+                payload.mono_auth_code = this.getMonoAuthCode;
+                payload.type = this.getDocType;
+                payload.firstname = this.getUserBio.firstname;
+                payload.lastname = this.getUserBio.lastname;
+                payload.email = this.getUserBio.email;
+                payload.phone = this.getUserBio.phone;
+                payload.date_of_birth = this.getUserBio.date_of_birth;
+                payload.bank_name = this.getBankName;
+                payload.account_number = this.getAccountNumber;
+                payload.bvn = this.getBvn;
+                payload.loan_amount = 100000;
+                payload.file = this.getDoc;
+
+                this.prequalifyUser(payload);
+            }
+        },
+    },
+    methods: {
+        ...mapActions(['prequalifyUser']),
     },
 };
 </script>
