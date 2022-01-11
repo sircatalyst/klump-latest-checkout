@@ -56,8 +56,9 @@ export default {
     },
     methods: {
         gotoNextModal() {
-            this.$emit('gotoNextModal', { next: 'completeCheckoutModal' });
-        }
-    }
+            this.$store.commit('setIsBankConnected', true);
+            this.$emit('gotoNextModal', { next: 'monoModal' });
+        },
+    },
 };
 </script>
