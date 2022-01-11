@@ -6,7 +6,10 @@
         </p>
         <ValidationObserver v-slot="{ invalid }">
             <form @submit.prevent="submitAccountNumber" autocomplete="off">
-                <ValidationProvider rules="required" v-slot="{ errors }">
+                <ValidationProvider
+                    rules="required|account-number"
+                    v-slot="{ errors }"
+                >
                     <klump-checkout-input
                         v-model="payload.account_number"
                         :customClass="'rounded mb-6'"
@@ -82,7 +85,7 @@ export default {
         getAccountNumber(account_number) {
             if (account_number !== '') {
                 this.$emit('gotoNextModal', {
-                    next: 'hangOnModal',
+                    next: 'connectYourBankModal',
                 });
             }
         },
