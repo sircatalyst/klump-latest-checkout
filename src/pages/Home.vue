@@ -155,6 +155,10 @@ export default {
                     this.showFourEasyPaymentsModal = false;
                     this.showSignInModal = true;
                     break;
+                case 'signUpModal':
+                    this.showSignInModal = false;
+                    this.showFourEasyPaymentsModal = true;
+                    break;
                 case 'payModal':
                     this.showSignInModal = false;
                     this.showPayModal = true;

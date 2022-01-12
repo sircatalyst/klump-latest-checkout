@@ -206,7 +206,7 @@ const actions = {
             });
     },
     verifyUserId({ commit }, data) {
-        api.post('register/validate-id', data)
+        api.post('register/pre-qualify/validate-id', data)
             .then((response) => {
                 if (!response.ok) {
                     return Promise.reject(response);
@@ -214,7 +214,11 @@ const actions = {
                 return response.json();
             })
             .then((response) => {
-                commit('setUserBio', response.data);
+                commit('setAlert', {
+                    type: 'success',
+                    message: response.message,
+                });
+                commit('setDoc', data.file);
             })
             .catch(async (response) => {
                 const error = await response.text().then((text) => text);
