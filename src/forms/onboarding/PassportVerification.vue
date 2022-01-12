@@ -170,7 +170,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import { ValidationObserver, ValidationProvider } from 'vee-validate';
 import '../../validations.js';
 import KlumpCheckoutButton from '@/components/KlumpCheckoutButton.vue';
@@ -193,7 +193,7 @@ export default {
         };
     },
     computed: {
-        ...mapGetters(['getDocType', 'getDoc']),
+        ...mapGetters(['getDocType', 'getDoc', 'getUserBio']),
     },
     watch: {
         getDoc(file) {
@@ -203,6 +203,7 @@ export default {
         },
     },
     methods: {
+        ...mapActions(['verifyUserId']),
         async uploadPassport(event) {
             const { valid } = await this.$refs.provider.validate(event);
             if (valid) {
@@ -218,7 +219,19 @@ export default {
             return true;
         },
         submitKyc() {
-            this.$store.commit('setDoc', this.payload.passport);
+            /**
+             * validate KYC Document here
+             */
+            let payload = {};
+            payload.type = this.getDocType;
+            payload.firstname = this.getUserBio.firstname;
+            payload.lastname = this.getUserBio.lastname;
+            payload.email = this.getUserBio.email;
+            payload.phone = this.getUserBio.phone;
+            payload.date_of_birth = this.getUserBio.date_of_birth;
+            payload.file = this.payload.passport;
+
+            this.verifyUserId(payload);
         },
     },
 };
