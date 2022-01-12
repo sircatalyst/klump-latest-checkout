@@ -3,7 +3,9 @@
         <template v-slot:header> Document Verification </template>
         <p class="mb-6 leading-30">
             We need an ID to verify your identity and clear you for
-            installments.
+            installments. Please do well to avoid expired documents. Extra
+            spaces around your documents that aren't relevant will result to an
+            invalid document
         </p>
         <div class="flex flex-col space-y-3">
             <span
