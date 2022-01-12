@@ -81,6 +81,7 @@ export default {
             'getBankName',
             'getAccountNumber',
             'getBvn',
+            'getIsUserEligible',
         ]),
     },
     watch: {
@@ -99,8 +100,19 @@ export default {
                 payload.bvn = this.getBvn;
                 payload.loan_amount = 100000;
                 payload.file = this.getDoc;
-
+                /**
+                 * simulated loan amount stored in vuex
+                 * to remove later
+                 */
+                this.$store.commit('setLoanAmount', payload.loan_amount);
                 this.prequalifyUser(payload);
+            }
+        },
+        getIsUserEligible(bool) {
+            if (bool) {
+                this.$emit('gotoNextModal', {
+                    next: 'completeCheckoutModal',
+                });
             }
         },
     },

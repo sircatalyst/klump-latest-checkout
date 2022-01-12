@@ -18,18 +18,19 @@
             </svg>
         </div>
         <p class="leading-30 text-center mt-4 mb-2">
-            You have been qualified for a spending limit of
+            You are eligible for a loan of
         </p>
         <h1 class="hero-text bolded text-center text-2xl mb-7 text-primary">
-            NGN 910,365.57
+            NGN {{ loanAmount }}
         </h1>
-        <span @click="gotoNextModal(false, {}, 'fourInterestFreeInstallmentModal')">
+        <span @click="gotoNextModal(false, {}, 'completeCheckout')">
             <klump-checkout-button>Complete checkout</klump-checkout-button>
         </span>
     </klump-checkout-container>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import KlumpCheckoutButton from '@/components/KlumpCheckoutButton';
 import KlumpCheckoutContainer from '@/components/KlumpCheckoutContainer';
 import gotoNextModalMixin from '../../mixins/gotoNextModal';
@@ -40,6 +41,14 @@ export default {
     components: {
         KlumpCheckoutButton,
         KlumpCheckoutContainer,
+    },
+    computed: {
+        ...mapGetters(['getLoanAmount']),
+        loanAmount() {
+            return this.getLoanAmount !== null
+                ? this.getLoanAmount.toLocaleString('en-US')
+                : null;
+        },
     },
 };
 </script>

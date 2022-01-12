@@ -12,6 +12,8 @@ const state = {
     accountNumber: '',
     monoAuthCode: '',
     bankName: '',
+    loanAmount: null,
+    isUserEligible: false,
     email: null,
     password: null,
     loggedUser: {},
@@ -34,6 +36,8 @@ const getters = {
     getIsBankConnected: (state) => state.isBankConnected,
     getMonoAuthCode: (state) => state.monoAuthCode,
     getBankName: (state) => state.bankName,
+    getLoanAmount: (state) => state.loanAmount,
+    getIsUserEligible: (state) => state.isUserEligible,
     getPassword: (state) => state.password,
     isLoggedIn: (state) => state.isLoggedIn,
     refreshingToken: (state) => state.refreshingToken,
@@ -71,6 +75,12 @@ const mutations = {
     },
     setBankName: (state, name) => {
         state.bankName = name;
+    },
+    setLoanAmount: (state, amount) => {
+        state.loanAmount = amount;
+    },
+    setIsUserEligible: (state, bool) => {
+        state.isUserEligible = bool;
     },
     setRefreshToken: (state, data) => {
         state.refreshingToken = data;
@@ -226,8 +236,8 @@ const actions = {
                 }
                 return response.json();
             })
-            .then((response) => {
-                console.log(response.data);
+            .then(() => {
+                commit('setIsUserEligible', true);
             })
             .catch(async (response) => {
                 const error = await response.text().then((text) => text);
