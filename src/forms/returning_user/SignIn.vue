@@ -71,8 +71,10 @@
             </ValidationObserver>
             <p class="text-lg leading-25 text-secondary text-center mt-6">
                 Don't have an account?
-                <router-link to="#" class="text-light-blue cursor-pointer"
-                    >Sign up</router-link
+                <span
+                    @click="gotoNextModal(false, {}, 'signUpModal')"
+                    class="text-light-blue cursor-pointer"
+                    >Sign up</span
                 >
             </p>
         </klump-checkout-container>
