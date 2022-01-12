@@ -219,10 +219,9 @@ export default {
                     this.showHangOnModal = false;
                     this.showCompleteCheckoutModal = true;
                     break;
-                case 'fourInterestFreeInstallmentModal':
+                case 'completeCheckout':
                     this.payload = { ...param.payload, ...this.payload };
                     this.showCompleteCheckoutModal = false;
-                    this.showFourInterestFreeInstallmentModal = true;
                     break;
                 case 'successfulTransactionModal':
                     this.payload = { ...param.payload, ...this.payload };
