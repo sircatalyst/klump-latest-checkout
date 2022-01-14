@@ -248,13 +248,22 @@ export default {
              */
             const data = JSON.parse(event.data);
             console.log(1, event);
-            console.log(2, event.source);
+            console.log(2,event.source);
             this.$store.commit('setPayload', data.data);
             this.$store.commit('setMerchantChannel', event);
         },
     },
     created() {
         window.addEventListener('message', this.receiveLoanAmount, false);
+        setTimeout(() => {
+            window.contentWindow.postMessage(
+                JSON.stringify({
+                    data: "data",
+                }),
+                '*'
+            );
+            console.log('sends message back to the merchant from iframe')
+        }, 15000);
     }
 };
 </script>
