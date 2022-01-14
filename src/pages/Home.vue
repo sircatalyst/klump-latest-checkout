@@ -242,6 +242,19 @@ export default {
             this.showVerifyYourDetailsModal = true;
             this.$store.commit('setOtpStatus', false);
         },
+        receiveLoanAmount(event) {
+            /**
+             * check for merchant key and domain.origin
+             */
+            const data = JSON.parse(event.data);
+            console.log(1, event);
+            console.log(2, event.source);
+            this.$store.commit('setPayload', data.data);
+            this.$store.commit('setMerchantChannel', event);
+        },
     },
+    created() {
+        window.addEventListener('message', this.receiveLoanAmount, false);
+    }
 };
 </script>
